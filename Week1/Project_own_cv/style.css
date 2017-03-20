@@ -62,8 +62,21 @@ h2::before {
     color: rgb(10, 147, 189);
 }
 
-article h2 + p {
+article h2 + p, .darabanth, .restaurant {
     text-align: right;
+}
+.darabanth {
+    padding-right: 20px;
+}
+
+.student, .darabanth, .restaurant {
+    line-height: 10px;
+}
+
+.student {
+    color: rgb(10, 147, 189);
+    padding-right: 40px;
+    font-weight: bolder;
 }
 
 article {
