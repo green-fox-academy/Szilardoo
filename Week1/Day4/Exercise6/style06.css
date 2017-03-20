@@ -1,0 +1,9 @@
+.mainText {
+    border-left: 2px solid black;
+    width: 300px;
+    height: auto;
+    padding: auto;
+    padding-left: 20px;
+    margin: 10px;
+    font-size: 18px;
+}

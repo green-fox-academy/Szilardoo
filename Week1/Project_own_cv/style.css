@@ -1,0 +1,147 @@
+header {
+    background-color: rgb(149, 149, 149);
+    height: 300px;
+    padding: 60px;
+}
+
+img {
+    border: 6px solid rgb(144, 232, 254);
+    width: 300px;
+    height: 300px;
+    border-radius: 150px;
+    float: right;
+    margin-top: -130px;
+    margin-right: 30px;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+h2:nth-of-type(2), h2:nth-of-type(4){
+    text-align: right;
+}
+
+.name {
+    color: rgb(144, 232, 254);
+    font-size: 80px;
+    line-height: 0px;
+    padding-left: 100px;
+    padding-top: 0px;
+    margin-bottom: 50px;
+}
+
+.introduce, .myself {
+    max-width: 500px;
+    padding-left: 110px;
+    font-size: 18px;
+    color: rgb(230, 230, 230);
+}
+
+.introduce {
+    line-height: 0px;
+    font-size: 30px;
+    padding-bottom: 7px;
+}
+
+body {
+    background-color: rgb(227, 227, 227);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+footer {
+    background-color: rgb(158, 206, 220);
+    text-align: center;
+
+}
+
+h2::before {
+    content: ">> ";
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(10, 147, 189);
+}
+
+article h2 + p {
+    text-align: right;
+}
+
+article {
+    max-width: 780px;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+ul {
+    padding-left: 50px;
+    list-style: none;
+}
+
+ul:nth-of-type(2), ul:nth-of-type(2) li::before {
+    color: rgb(10, 147, 189);
+    font-weight: bold;
+}
+
+ul:nth-of-type(2) li::before {
+    content: "+ ";
+    font-size: 25px;
+}
+
+.email, .mobile {
+    color: rgb(10, 147, 189);
+    font-weight: bold;
+}
+
+.email {
+    padding-right: 20px;
+}
+
+.mobile {
+    padding-right: 74px;
+}
+
+.facebook, .twitter, .github {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    display: inline-block;
+    text-indent: 110%;
+    overflow: hidden;
+    background-size: contain;
+    position: relative;
+    transition: top .3s, left .3s, box-shadow .3s;
+    box-shadow: 0 0 0 grey;
+    top: 0px;
+    left: 0px;
+}
+
+.facebook:hover , .twitter:hover, .github:hover {
+  top: -5px;
+  left: -5px;
+  box-shadow: 5px 5px 0 grey;
+
+}
+
+.facebook {
+    background-image: url(fcb.svg);
+}
+
+.twitter {
+    background-image: url(twitter.svg);
+}
+
+.github {
+    background-image: url(github.svg);
+}
+
+ul br + small {
+    padding-left: 60px;
+}
+
+small {
+    padding-right: 20px;
+}
+
+.title {
+    padding-right: 30px;
+}

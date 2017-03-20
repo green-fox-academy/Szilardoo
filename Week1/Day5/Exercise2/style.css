@@ -1,0 +1,25 @@
+.red, .blue, .gray {
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    margin: 5px;
+    color: white;
+}
+
+.red {
+    background: url(duck.png) no-repeat left center;
+    background-color: rgb(255, 99, 71);
+    background-size: 30%;
+}
+
+.blue{
+    background: url(duck.png) no-repeat center;
+    background-size: 50%;
+    background-color: rgb(100, 53, 121);
+}
+
+.gray {
+    background: url(duck.png) no-repeat right bottom;
+    background-size: 30%;
+    background-color: rgb(128, 128, 128);
+}
