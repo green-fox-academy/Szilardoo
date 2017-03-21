@@ -21,5 +21,5 @@ if girls + boys>=20:
         print("Quite cool party")
 elif girls + boys < 20:
     print("Average party")
-if girls == 0:
+if girls + boys < 0 and girls == 0:
     print("Sausage party")
