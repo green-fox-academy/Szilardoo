@@ -7,10 +7,14 @@
 # // You found the number: 8
 
 number = 7
+
 guess = int(input('Guess the number: '))
-if number < guess:
+while number != guess:
+    if number < guess:
         print('The stored number is lower')
-elif guess < number:
+        guess = int(input('Guess the number: '))
+    elif guess < number:
         print('The stored number is higher')
+        guess = int(input('Guess the number: '))
 else:
-        print('You found the number: 7')
+    print('You found the number: 7')
