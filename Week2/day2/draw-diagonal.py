@@ -3,14 +3,13 @@
 #
 #
 # %%%%%
-# %   %
-# %   %
-# %   %
+# %%  %
+# % % %
+# %  %%
 # %   %
 # %%%%%
 #
 # The square should have as many lines as the number was
-
 number = int(input('Give me a number, please: '))
 if number == 1:
     print('%'*number)
@@ -20,9 +19,11 @@ elif number == 2:
 elif number != 2 and number != 3:
     print('%'*number)
     for x in range(1, number-1):
-        print('%'+' '*(number-2)+'%')
+        y = x;
+        y -=1
+        print('%'+' '*(y)+'%'+' '*((number)-y-3)+'%')
     print('%'*number)
 elif number == 3:
     print('%'*number)
-    print('% %')
+    print('%%%')
     print('%'*number)
