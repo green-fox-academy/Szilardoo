@@ -4,7 +4,7 @@ def factorio(number: int):
     factorial = 1
     for i in range(1, number + 1):
         factorial*=i
-    print(factorial)
+    return factorial
 
-factorio(5)
-factorio(8)
+number = int(input('Give me a number, please: '))
+print(factorio(number))
