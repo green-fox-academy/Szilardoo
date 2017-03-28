@@ -5,8 +5,8 @@ myfile = open('reversed-lines.txt', 'r')
 def decrypt(file_name):
     text = myfile.read()
     ns = ""
-    for i in range(len(text),0,-1):
-        ns += text[i-1]
+    for i in range(len(text)-1, 0 ,-1):
+        ns += text[i]
     return ns
 
 print(decrypt(myfile))
