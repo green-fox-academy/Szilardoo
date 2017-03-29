@@ -14,7 +14,7 @@ def draw_to_center(x,y):
     canvas.create_line(x, y, 150, 150)
     return
 
-for i in range(0, 301, 20):
+for i in range(0, 301, 15):
     draw_to_center(i,0)
     draw_to_center(0,i)
     draw_to_center(300,i)

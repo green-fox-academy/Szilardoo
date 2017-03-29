@@ -18,7 +18,7 @@ list_fox = [[50, 100], [70, 70], [80, 90], [90, 90], [100, 70], [120, 100], [85,
 def connector(alist):
     length = len(alist)
     for i in range(length-1):
-        canvas.create_line(alist[i][0]+3,alist[i][1],alist[i+1][0]+3,alist[i+1][1], fill="green")
+        canvas.create_line(alist[i][0],alist[i][1],alist[i+1][0],alist[i+1][1], fill="green")
 
 connector(list_box)
 connector(list_fox)
