@@ -11,9 +11,8 @@ canvas.pack()
 # fill the canvas with lines from the edges, every 20 px, to the center.
 
 def draw_to_center(x,y):
-    for j in (0, 300):
-        canvas.create_line(x, y, 150, 150)
-        return
+    canvas.create_line(x, y, 150, 150)
+    return
 
 for i in range(0, 301, 20):
     draw_to_center(i,0)
