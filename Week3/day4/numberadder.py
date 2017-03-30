@@ -3,6 +3,6 @@ def count_down(number):
     if number == 0:
         return 0
     else:
-        return number+count_down(number-1)
+        return number + count_down(number-1)
 
 print(count_down(6))
