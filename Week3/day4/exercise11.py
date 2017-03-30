@@ -9,23 +9,21 @@ canvas.pack()
 
 canvas.create_rectangle(0,0,600,600, fill="Yellow")
 
-
-
-def squares(height, width):
-    if height < 5 and width < 5:
+def squares(size, x, y, counter):
+    if counter == 0:
         return None
     else:
-        canvas.create_line(height/3,0,height/3,width)
-        canvas.create_line((height/3)*2,0,(height/3)*2,width)
-        canvas.create_line(0,width/3,height,width/3)
-        canvas.create_line(0,(width/3)*2,height,(width/3)*2)
-        return squares((height/3), (width/3))
+        canvas.create_line(x + size/3, y, x + size/3, y + size)
+        canvas.create_line(x + size/3*2, y, x + size/3*2, y + size)
+        canvas.create_line(x, y + size/3, x + size, y + size/3)
+        canvas.create_line(x, y + size/3*2, x + size, y + size/3*2)
 
-squares(600, 600)
-# def squares(x, y):
-#     if :
-#         return None
+        squares(size/3, x, y + size/3, counter-1)
+        squares(size/3, x + size/3, y, counter-1)
+        squares(size/3, x + size/3, y + size/3*2, counter-1)
+        squares(size/3, x + size/3*2, y + size/3, counter-1)
 
+squares(600,0,0,5)
 
 
 root.mainloop()
