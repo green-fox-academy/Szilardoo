@@ -12,7 +12,7 @@ class Sharpie():
     def __init__(self, color, width):
         self.color = color
         self.width = width
-        self.ink_amount = 100
+        self.ink_amount = 100.0
 
     def use(self, x):
         self.ink_amount -= x
