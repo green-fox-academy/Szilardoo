@@ -1,44 +1,56 @@
-class Garden():
+class Garden(object):
 
     def __init__(self):
+        self.flowers_trees = []
+
+    def add_plant(self, plant):
+        self.flowers_trees.append(plant)
+
+    def watering(slef, water):
+        self.water = water
+        self.needs_water = []
+        for i in self.flowers_trees:
+            if self.water == True:
+                self.needs_water.append(i)
+            else:
+                print("The "+ self.color + self.type + " doesn't need water")
+        for j in self.needs_water:
+            if self.type == "Flower":
+                self.current_water_amount += water/j * 0.75
+            elif self.type == "Tree":
+                self.current_water_amount += water/j * 0.4
+
+    def __str__(self):
+        result = ""
+        for i in range(0, len(self.flowers_trees)):
+            result +="The " + self.flowers_trees[i].color + " " + self.flowers_trees[i].type + "\n"
+        return result
 
 
-    def watering():
-        if self.current_water_amount < 5:
-            self.current_water_amount +=
-        else:
-            print("The "  "Flower doesnt need water")
+
+class Flower(Garden):
+
+    def __init__(self, color):
+        self.current_water_amount = 0
+        self.color = color
+        self.type = "Flower"
+        self.water = True
+
+    def watering(self):
+        if self.current_water_amount > 5:
+            self.water = False
+
+class Tree(Garden):
+
+    def __init__(self, color):
+        self.current_water_amount = 0
+        self.color = color
+        self.type = "Tree"
+        self.water = True
 
 
 
-class Flower():
-
-    def __init__(self):
-            self.current_water_amount = 0
-            self.flower = str([])
-            self.water_40 = 40
-            self.water_70 = 70
-
-
-    def add_flower(self, type):
-        self.flower.append(type)
-
-    def watering():
-        if self.current_water_amount < 5:
-            self.current_water_amount +=
-        else:
-            for i in self.flower
-                print("The "  "Flower doesnt need water")
-
-
-class Tree():
-
-    def __init__(self):
-            self.current_water_amount = 0
-            self.tree = []
-            self.water_40 = 40
-            self.water_70 = 70
-
-
-    def add_tree(self, type):
-        self.tree.append(type)
+garden = Garden()
+flower1 = Flower("Blue")
+garden.add_plant(flower1)
+print(garden)
