@@ -20,20 +20,20 @@ class Garden(object):
                 watering.current_water_amount += self.water_amount/len(self.needs_water) * 0.75
             elif watering.type == "Tree":
                 watering.current_water_amount += self.water_amount/len(self.needs_water) * 0.4
-                    # shuold be called the tree and flower watering function here
+
 
     def __str__(self):
-        result = ""
-        for i in range(0, len(self.flowers_trees)):
-            result +="The " + self.flowers_trees[i].color + " " + self.flowers_trees[i].type + " " + self.flowers_trees[i].txt +"\n"
-        return result
+        self.in_the_garden = ""
+        for plant in self.flowers_trees:
+            self.in_the_garden +="The " + plant.color + " " + plant.type + " " + plant.txt +"\n"
+        return self.in_the_garden
 
 
 
 class Flower(Garden):
 
-    def __init__(self, color):
-        self.current_water_amount = 0
+    def __init__(self, color, water_level=5):
+        self.current_water_amount = water_level
         self.color = color
         self.type = "Flower"
         self.water = True
@@ -47,8 +47,8 @@ class Flower(Garden):
 
 class Tree(Garden):
 
-    def __init__(self, color):
-        self.current_water_amount = 0
+    def __init__(self, color, water_level=7):
+        self.current_water_amount = water_level
         self.color = color
         self.type = "Tree"
         self.water = True
@@ -70,9 +70,8 @@ garden.add_plant(flower1)
 garden.add_plant(flower2)
 garden.add_plant(tree1)
 garden.add_plant(tree2)
-garden.watering(40)
 print(garden)
-garden.watering(70)
+garden.watering(40)
 print(garden)
 garden.watering(70)
 print(garden)
