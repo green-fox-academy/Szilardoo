@@ -40,5 +40,20 @@ class TestAnagram(unittest.TestCase):
         anagram = Anagram()
         self.assertEqual(anagram.anagram_checker("aaa","bbb"), False)
 
+
+class TestLetters(unittest.TestCase):
+
+    def test_count_letters(self):
+    	test = {'B' : 1, 'l' : 1, 'i' : 1, 'z' : 2, 'a' : 1, 'r' : 1, 'd' : 1}
+    	letter = Letters()
+    	self.assertEqual(letter.count_letter("Blizzard"), test)
+
+    def test_count_letters_empty_dic(self):
+    	test = {}
+    	letter = Letters()
+    	self.assertEqual(letter.count_letter(""), test)
+
+
+
 if __name__ == '__main__':
     unittest.main()
