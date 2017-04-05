@@ -53,6 +53,24 @@ class TestLetters(unittest.TestCase):
     	letter = Letters()
     	self.assertEqual(letter.count_letter(""), test)
 
+class TestFibonacci(unittest.TestCase):
+
+	def test_count_letters_five(self):
+		fibonacci_number = Fibonacci_numbers()
+		self.assertEqual(fibonacci_number.fibonacci(5), 5)
+
+	def test_count_letters_zero(self):
+		fibonacci_number = Fibonacci_numbers()
+		self.assertEqual(fibonacci_number.fibonacci(0), 0)
+
+	def test_count_letters_one(self):
+		fibonacci_number = Fibonacci_numbers()
+		self.assertEqual(fibonacci_number.fibonacci(1), 1)
+
+	def test_count_letters_ten(self):
+		fibonacci_number = Fibonacci_numbers()
+		self.assertEqual(fibonacci_number.fibonacci(10), 55)
+
 
 
 if __name__ == '__main__':

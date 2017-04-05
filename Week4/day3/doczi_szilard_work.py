@@ -10,7 +10,7 @@ class Numbers():
     	if len(elements)==0:
         	return 0
     	else:
-        	return elements[0] + sum(elements[1:])
+        	return elements[0] + self.sum(elements[1:])
 
 class Anagram():
 
@@ -27,9 +27,16 @@ class Letters():
 		list_string = list(string)
 		dictionary = {}
 		for elements in list_string:
-			if elements not in dictionary:
-				dictionary[elements] = 1
-			else:
+			if elements in dictionary:
 				dictionary[elements] += 1
+			else:
+				dictionary[elements] = 1
 		return dictionary
 
+class Fibonacci_numbers():
+
+	def fibonacci(self, number):
+		if number == 1 or number == 0:
+			return number
+		else:
+			return self.fibonacci(number-1) + self.fibonacci(number-2)
