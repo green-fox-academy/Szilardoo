@@ -3,6 +3,7 @@ class Garden(object):
     def __init__(self):
         self.flowers_trees = []
 
+
     def add_plant(self, plant):
         self.flowers_trees.append(plant)
 
@@ -10,16 +11,16 @@ class Garden(object):
         self.water_amount = water
         print("Watering with "+str(self.water_amount))
         self.needs_water = []
-        for i in self.flowers_trees:
-            if self.water == True:
-                self.needs_water.append(i)
-            else:
-                print("The "+ self.color + self.type + " doesn't need water")
-        for j in self.needs_water:
-            if self.type == "Flower":
-                self.current_water_amount += self.water_amount/j * 0.75
-            elif self.type == "Tree":
-                self.current_water_amount += self.water_amount/j * 0.4
+        for plant in self.flowers_trees:
+            if plant.water == True:
+                self.needs_water.append(plant)
+        for watering in self.needs_water:
+            watering.watering()
+            if watering.type == "Flower":
+                watering.current_water_amount += self.water_amount/len(self.needs_water) * 0.75
+            elif watering.type == "Tree":
+                watering.current_water_amount += self.water_amount/len(self.needs_water) * 0.4
+                    # shuold be called the tree and flower watering function here
 
     def __str__(self):
         result = ""
@@ -39,10 +40,10 @@ class Flower(Garden):
         self.txt = "needs water."
 
     def watering(self):
-        if self.current_water_amount > 5:
+        if self.current_water_amount >= 5:
             self.water = False
-        # if self.water == True:
-        #     self.txt = "doesnt need water"
+        if self.water == False:
+            self.txt = "doesnt need water"
 
 class Tree(Garden):
 
@@ -54,14 +55,24 @@ class Tree(Garden):
         self.txt = "needs water"
 
     def watering(self):
-        if self.current_water_amount > 5:
+        if self.current_water_amount >= 10:
             self.water = False
-        # if self.water == True:
-        #     self.txt = "doesnt need water"
+        if self.water == False:
+            self.txt = "doesnt need water"
 
 
 garden = Garden()
 flower1 = Flower("Blue")
+flower2 = Flower("Yellow")
+tree1 = Tree("Purple")
+tree2 = Tree("Orange")
 garden.add_plant(flower1)
+garden.add_plant(flower2)
+garden.add_plant(tree1)
+garden.add_plant(tree2)
 garden.watering(40)
+print(garden)
+garden.watering(70)
+print(garden)
+garden.watering(70)
 print(garden)
