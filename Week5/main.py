@@ -6,8 +6,6 @@ canvas = Canvas(root, width=720, height=720)
 
 class GameObject():
     def __init__(self):
-        self.testcharacterX = 0
-        self.testcharacterY = 0
         self.map = [
             [1, 1, 1, 0, 1, 0, 1, 1, 1, 1],
             [1, 1, 1, 0, 1, 0, 1, 0, 0, 1],
@@ -21,17 +19,6 @@ class GameObject():
             [1, 1, 1, 0, 1, 0, 0, 1, 1, 1],
             ]
         self.draw_background()
-        self.draw_skeletons()
-        self.draw_boss_and_key()
-
-
-
-    def character(self, canvas):
-         self.main_character_down_pic = PhotoImage(file = "a.png")
-         self.main_character_left_pic = PhotoImage(file = "b.png")
-         self.main_character_up_pic = PhotoImage(file = "h.png")
-         self.main_character_right_pic = PhotoImage(file = "j.png")
-         self.hero = canvas.create_image(72*self.testcharacterX, 72*self.testcharacterY, anchor=NW, image=self.main_character_down_pic )
 
 
     def draw_background(self):
@@ -46,70 +33,145 @@ class GameObject():
                 else:
                     canvas.create_image(w*j, h*i, anchor=NW, image = self.background_pic_wall)
 
-    def draw_skeletons(self):
-        self.skeleton = PhotoImage(file = "skeleton.png")
-        self.skeleton_position = [[4, 0], [0, 5], [7, 5]]#, [2, 0], [0, 9], [2, 3], [2, 5], [4, 3], [4, 5], [5, 5], [5, 8], [7, 9]]
-        # for skeleton in range(random.randint(3, 5)):
-        #     self.which = random.choice(self.skeleton_position)
-        #     self.draw_skeleton = canvas.create_image(self.which[0]*72, self.which[1]*72, anchor=NW, image=self.skeleton)
-        for skeleton in self.skeleton_position:
-            self.draw_skeleton = canvas.create_image(skeleton[0]*72, skeleton[1]*72, anchor=NW, image=self.skeleton)
 
-    def draw_boss_and_key(self):
-        self.boss_img = PhotoImage(file = "boss.png")
-        self.boss_position = [[6, 0], [9, 0], [6, 3], [9, 3], [9, 5]]
-        self.key_position = [[2, 9], [4, 9], [7, 6], [7, 8], [9, 9]]
-        self.where_the_boss = random.choice(self.boss_position)
-        self.boss = canvas.create_image(self.where_the_boss[0]*72, self.where_the_boss[1]*72, anchor=NW, image=self.boss_img)
-        self.where_the_key = random.choice(self.key_position)
-        self.key_boss = canvas.create_image(self.where_the_key[0]*72, self.where_the_key[1]*72, anchor=NW, image=self.skeleton)
+class Hero():
 
-
-class MainLoop():
-
+    def __init__(self, canvas):
+        self.testcharacterX = 0
+        self.testcharacterY = 0
+        self.main_character_down_pic = PhotoImage(file = "a.png")
+        self.main_character_left_pic = PhotoImage(file = "b.png")
+        self.main_character_up_pic = PhotoImage(file = "h.png")
+        self.main_character_right_pic = PhotoImage(file = "j.png")
+        self.hero = canvas.create_image(72*self.testcharacterX, 72*self.testcharacterY, anchor=NW, image=self.main_character_down_pic )
 
     def steps(self, x, y, pic):
         self.x = x
         self.y = y
         if 0 <= x <= 9 and 0 <= y <= 9:
             if game.map[y][x] == 1:
-                canvas.delete(game.hero)
-                game.testcharacterX = self.x
-                game.testcharacterY = self.y
-                game.hero = canvas.create_image(72*game.testcharacterX, 72*game.testcharacterY, anchor=NW, image=pic )
+                canvas.delete(self.hero)
+                self.testcharacterX = self.x
+                self.testcharacterY = self.y
+                self.hero = canvas.create_image(72*self.testcharacterX, 72*self.testcharacterY, anchor=NW, image=pic )
 
 
-    def on_key_press(self, e):
-        if e.keycode == 38:
-            if game.testcharacterY > 0:
-                self.steps(game.testcharacterX, game.testcharacterY-1, game.main_character_up_pic)
-        elif e.keycode == 40:
-            if game.testcharacterY < 648:
-                self.steps(game.testcharacterX, game.testcharacterY+1, game.main_character_down_pic)
-        elif e.keycode == 39:
-            if game.testcharacterX < 645:
-                self.steps(game.testcharacterX+1, game.testcharacterY, game.main_character_right_pic)
-        elif e.keycode == 37:
-            if game.testcharacterX > 0:
-                self.steps(game.testcharacterX-1, game.testcharacterY, game.main_character_left_pic)
-        elif e.keycode == 32:
-            print(self.x,game.where_the_boss[0], self.y, game.where_the_boss[1])
-            if self.x == game.where_the_boss[0] and self.y == game.where_the_boss[1]:
-                canvas.delete(game.boss)
+class Skeleton():
 
-class GameLogic():
+    def __init__(self):
+        self.skeleton_counter = 0
+        self.skeleton_pic = PhotoImage(file = "skeleton.png")
+        self.how_many = random.randint(3,6)
+        while self.skeleton_counter != 1:
+            self.draw_skeleton()
+
+    def draw_skeleton(self):
+        self.skel_x = random.randint(0,9)
+        self.skel_y = random.randint(0,9)
+        if game.map[self.skel_y][self.skel_x] == 1:
+            self.skeleton = canvas.create_image(72*self.skel_x, 72*self.skel_y, anchor=NW, image=self.skeleton_pic )
+            self.skeleton_counter += 1
+
+
+    def move(self):
+        self.move_to_x = random.randint(-1, 1)
+        self.move_to_y = random.randint(-1, 1)
+        # while 0 > (self.skel_y + self.move_to_y) > 9 and 0 > (self.skel_x + self.move_to_x) > 9:
+        #     self.move_to_x = random.randint(-1, 1)
+        #     self.move_to_y = random.randint(-1, 1)
+        while game.map[self.skel_y + self.move_to_y][self.skel_x + self.move_to_x] != 1 and 0 > (self.skel_y + self.move_to_y) > 9 and 0 > (self.skel_x + self.move_to_x) > 9:
+            self.move_to_x = random.randint(-1, 1)
+            self.move_to_y = random.randint(-1, 1)
+
+        self.skel_x = self.skel_x + self.move_to_x
+        self.skel_y = self.skel_y + self.move_to_y
+        canvas.delete(self.skeleton)
+        self.skeleton = canvas.create_image(72*(self.skel_x), 72*(self.skel_y), anchor=NW, image=self.skeleton_pic )
+
+
+class Boss():
+
+    def __init__(self):
+        self.counter = 0
+        self.boss_pic = PhotoImage(file = "boss.png")
+        while self.counter != 1:
+            self.draw_boss()
+
+    def draw_boss(self):
+        self.boss_x = random.randint(0,9)
+        self.boss_y = random.randint(0,9)
+        if game.map[self.boss_y][self.boss_x] == 1:
+            self.boss = canvas.create_image(72*self.boss_x, 72*self.boss_y, anchor=NW, image=self.boss_pic )
+            self.counter += 1
+
+    def move(self):
+        self.move_to_x = random.randint(-1, 1)
+        self.move_to_y = random.randint(-1, 1)
+        while 0 > (self.boss_y + self.move_to_y) > 9 and 0 > (self.boss_x + self.move_to_x) > 9:
+            self.move_to_x = random.randint(-1, 1)
+            self.move_to_y = random.randint(-1, 1)
+        while game.map[self.boss_y + self.move_to_y][self.boss_x + self.move_to_x] != 1:
+            self.move_to_x = random.randint(-1, 1)
+            self.move_to_y = random.randint(-1, 1)
+
+        self.boss_x = self.boss_x + self.move_to_x
+        self.boss_y = self.boss_y + self.move_to_y
+        canvas.delete(self.boss)
+        self.boss = canvas.create_image(72*(self.boss_x), 72*(self.boss_y), anchor=NW, image=self.boss_pic )
+
+class MainLoop():
+
     def __init__(self):
         self.level = 1
         self.hero_hp = 10
         self.DP = 5
         self.SP = 5
-        self.enemy_level = [self.level,self.level,self.level,self.level,self.level,self.level+1,self.level+1,self.level+1,self.level+1,self.level+2]
         self.create_display()
-        print(game.where_the_boss[0],game.testcharacterX,game.testcharacterY,game.where_the_boss[1])
-    # 
-    # def battle(self):
-    #     if game.testcharacterX == game.where_the_boss[0] and game.testcharacterY == game.where_the_boss[1]:
-    #         canvas.delete(game.boss)
+        self.hero = Hero(canvas)
+        self.skeleton = Skeleton()
+        self.boss = Boss()
+        self.only_two = 0
+        #self.move_skeleton()
+        # self.d6 = random.randint(1,6)
+        # self.hero_datas = {maxHP:10, maxDP:10, maxSP:10, currentHP:10, currentDP:10, currentSP:10}
+
+
+    def on_key_press(self, e):
+        if e.keycode == 38:
+            self.hero.steps(self.hero.testcharacterX, self.hero.testcharacterY-1, self.hero.main_character_up_pic)
+            self.only_two += 1
+            if self.only_two % 2 == 0:
+                self.skeleton.move()
+                self.boss.move()
+        elif e.keycode == 40:
+            self.hero.steps(self.hero.testcharacterX, self.hero.testcharacterY+1, self.hero.main_character_down_pic)
+            self.only_two += 1
+            if self.only_two % 2 == 0:
+                self.skeleton.move()
+                self.boss.move()
+        elif e.keycode == 39:
+            self.hero.steps(self.hero.testcharacterX+1, self.hero.testcharacterY, self.hero.main_character_right_pic)
+            self.only_two += 1
+            if self.only_two % 2 == 0:
+                self.skeleton.move()
+                self.boss.move()
+        elif e.keycode == 37:
+            self.hero.steps(self.hero.testcharacterX-1, self.hero.testcharacterY, self.hero.main_character_left_pic)
+            self.only_two += 1
+            if self.only_two % 2 == 0:
+                self.skeleton.move()
+                self.boss.move()
+        elif e.keycode == 32:
+            pass
+
+    # def move_skeleton(self):
+    #     if self.hero.testcharacterX-1 or self.hero.testcharacterX+1 or self.hero.testcharacterY-1 or self.hero.testcharacterY+1:
+    #         if self.hero.testcharacterX -1 or self.hero.testcharacterX +1 or self.hero.testcharacterY-1 or self.hero.testcharacterY+1:
+    #            self.skeleton.move(self.skeleton.skel_x, self.skeleton.skel_y)
+
+    def fight(self):
+        pass
+
 
     def create_display(self):
         self.w = Label(root, text="Hero (Level: "+ str(self.level) + ") HP: " + str(self.hero_hp) + "/"+ str(self.hero_hp) +  " | DP: " + str(self.DP)+ " | SP: " + str(self.SP))
@@ -122,13 +184,10 @@ class GameLogic():
 
 
 game = GameObject()
-logic = GameLogic()
 main = MainLoop()
 canvas.bind("<KeyPress>", main.on_key_press)
 canvas.pack()
 
 canvas.focus_set()
-
-game.character(canvas)
 
 root.mainloop()
