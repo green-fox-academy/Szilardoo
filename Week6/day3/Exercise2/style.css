@@ -1,0 +1,14 @@
+.wrapper {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    background-color: #ffd62a;
+    justify-content: center;
+    align-items: center;
+}
+
+.purple {
+    width: 100px;
+    height: 100px;
+    background: #b02aff;
+}
