@@ -1,0 +1,24 @@
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.box {
+    height: 300px;
+    min-width: 300px;
+}
+
+.green {
+    background: #51d400;
+}
+
+.yellow {
+    background: #ffd62a;
+    flex-grow: 2;
+}
+
+.purple {
+    background: #b02aff;
+}
