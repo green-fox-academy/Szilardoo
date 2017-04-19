@@ -1,16 +1,12 @@
 .wrapper {
     width: 100%;
     margin: 0 auto;
-}
-
-.flex-container {
     display: flex;
 }
 
-
 .box {
-    height: 200px;
-    min-width: 200px;
+    height: 300px;
+    min-width: 300px;
 }
 
 .green {
@@ -19,6 +15,7 @@
 
 .yellow {
     background: #ffd62a;
+    flex-grow: 2;
 }
 
 .purple {
