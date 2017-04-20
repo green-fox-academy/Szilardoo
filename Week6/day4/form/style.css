@@ -3,6 +3,29 @@ body {
     display: flex;
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
+    color: #4a4261;
+    font-weight: 300;
+}
+
+.profile {
+    font-size: 22px;
+    padding: 25px 0;
+}
+
+p {
+    font-weight: bold;
+}
+
+.box {
+    display: flex;
+    height: 40px;
+    width: 300px;
+    background: #938c97;
+    padding-left: 10px;
+    margin-right: 20px;
+    align-items: center;
+    color: white;
+    border-radius: 2px;
 }
 
 .checkbox {
