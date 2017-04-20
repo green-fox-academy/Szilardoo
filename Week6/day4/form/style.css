@@ -12,6 +12,11 @@ body {
     padding: 25px 0;
 }
 
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
 p {
     font-weight: bold;
 }
@@ -28,6 +33,33 @@ p {
     border-radius: 2px;
 }
 
+input {
+    width: 305px;
+    height: 35px;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+    border-radius: 3px;
+    border: 1px solid #938c97;
+}
+
+.born {
+    width: 75px;
+    height: 35px;
+}
+
+.rad {
+    width: 20px;
+    height: 20px;
+}
+
+.Check {
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
 .checkbox {
     display: flex;
     flex-direction: row;
@@ -36,13 +68,4 @@ p {
 .column {
     display: flex;
     flex-direction: column;
-}
-
-.box {
-
-}
-
-.main {
-    display: flex;
-    flex-direction: row;
 }
