@@ -1,0 +1,25 @@
+body {
+    background-color: #dcd6cd;
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    </head>
+    <body>
+        <form>
+            <p>Profil</p>
+            <div class="main">
+                <div class="adatok">
+                    <div class="box">Személyes adatok</div>
+                    <p>Név</p>
+                    <input type="text">
+                    <p>Születési éved</p>
+                    <input type="number" placeholder="pl. 1984">
+                    <p>Nemed</p>
+                    <input type="radio" id="male" name="gender">
+                    <label for="male">Férfi</label>
+                    <input type="radio" id="female" name="gender">
+                    <label for="female">Nő</label><br>
+                    <p>Milyen márkákat szeretsz?</p>
+                        <div class="checkbox">
+                            <div class="column">
+                                <input type="checkbox" id="adidas">
+                                <label for="adidas">Adidas</label>
+                                <input type="checkbox" id="apple">
+                                <label for="apple">Apple</label>
+                                <input type="checkbox" id="coca_cola">
+                                <label for="coca_cola">Coca Cola</label>
+                                <input type="checkbox" id="mazda">
+                                <label for="mazda">Mazda</label><input type="checkbox" id="nike">
+                                <label for="nike">Nike</label>
+                            </div>
+                            <div class="column">
+                                <input type="checkbox" id="opel">
+                                <label for="opel">Opel</label>
+                                <input type="checkbox" id="rayban">
+                                <label for="rayban">Ray-Ban</label>
+                                <input type="checkbox" id="starbucks">
+                                <label for="starbucks">Starbucks</label>
+                                <input type="checkbox" id="tesla">
+                                <label for="tesla">Tesla</label>
+                                <input type="checkbox" id="yahoo">
+                                <label for="yahoo">Yahoo</label>
+                            </div>
+                        </div>
+                        <p>Többet is választhatsz</p>
+                    </div>
+                    <div class = "kapcsolat">
+                        <div class="box">Kapcsolat</div>
+                        <p>Telefonszám</p>
+                        <input type="tel" placeholder="+36 -- --- ---">
+                        <p>E-mail cím</p>
+                        <input type="email" placeholder="nev@domain.hu">
+                        <p>Facebook profilod</p>
+                        <input type="text" placeholder="https://www.facebook.com/..">
+                        <p>Twitter profilod</p>
+                        <input type="text" placeholder="https://www.twitter.com/..">
+                        <p>Milyen házban laksz?</p>
+                        <select>
+                            <option disable selected hidden>Válassz típust!</option>
+                            <option>Panel Ház</option>
+                            <option>Társas Ház</option>
+                            <option>Családi Ház</option>
+                        </select>
+                    </div>
+                </div>
+            <p>Bemutatkozás</p>
+            <textarea rows="10" cols="70" placeholder="Írj magadról pár mondatot"></textarea>
+            <p>CV feltöltés</p>
+            <input type="file"><br>
+            <input type="checkbox" id="feltételek">
+            <label for="feltételek">Elfogadom a felhasználói feltételeket</label>
+                <div class="buttons">
+                    <button type="button" class="save">Mentés</button>
+                    <button type="button" class="delete">Űrlap törlése</button>
+                <div>
+        </form>
+    </body>
+</html>
