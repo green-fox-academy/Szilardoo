@@ -1,0 +1,236 @@
+header {
+    background-color: rgb(149, 149, 149);
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 7px;
+}
+
+.columns, .me {
+    display: flex;
+    flex-direction: column;
+    background-color: #1f2022;
+    height: 400px;
+    width: 650px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+}
+
+ .me {
+    background-image: url("dsz.jpg");
+ }
+
+ .color {
+    display: flex;
+    background-color: rgba(100, 100, 100, 0.8);
+    height: 400px;
+    width: 650px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ }
+
+img {
+    border: 4px solid rgb(144, 232, 254);
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.lines li {
+    display:inline-block;
+    padding-right: 100px;
+    margin-right: 10px; 
+}
+
+.skill {
+    width:50.0%;
+    float: left;
+    position: relative;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.lines .barres li span {
+    background: #33a4c9;
+    bottom: -4px;
+    content: ' ';
+    display: block;
+    height: 5px;
+    left: 0;
+    position: absolute;
+    width: inherit;
+    z-index: 1;
+}
+
+.lines .barres li:after {
+        background: white;
+        bottom: -4px;
+        content: ' ';
+        display: block;
+        height: 5px;
+        position: absolute;
+        width:100%;
+    }
+
+.lines .barres li {
+        margin-bottom: 21px;
+        position: relative;
+    }
+
+.lines .tags li {
+        background-color:#33a4c9;
+        border:1px solid #1b91b7;
+        border-radius: 15px;
+        color:#fff;
+        display: inline-block;
+        line-height: 13px;
+        margin: 0 7px 17px 0;
+        padding: 5px 10px;
+    }
+
+h2 {
+    text-transform: uppercase;
+}
+
+h2:nth-of-type(2), h2:nth-of-type(4){
+    text-align: right;
+}
+
+.name {
+    color: rgb(144, 232, 254);
+    font-size: 60px;
+}
+
+.about {
+    color: rgb(144, 232, 254);
+    font-size: 50px;
+}
+
+.introduce, .myself {
+    max-width: 300px;
+    font-size: 18px;
+    color: rgb(230, 230, 230);
+}
+
+.introduce {
+    line-height: 0px;
+    font-size: 25px;
+    
+}
+
+body {
+    background-color: rgb(227, 227, 227);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+footer {
+    background-color: rgb(158, 206, 220);
+    text-align: center;
+
+}
+
+h2::before {
+    content: ">> ";
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(10, 147, 189);
+}
+
+article h2 + p, .darabanth, .restaurant {
+    text-align: right;
+}
+.darabanth {
+    padding-right: 20px;
+}
+
+.student, .darabanth{
+    line-height: 10px;
+}
+
+.student {
+    color: rgb(10, 147, 189);
+    padding-right: 40px;
+    font-weight: bolder;
+}
+
+article {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+ul {
+    padding-left: 50px;
+    list-style: none;
+}
+
+ul:nth-of-type(2), ul:nth-of-type(2) li::before {
+    color: rgb(10, 147, 189);
+    font-weight: bold;
+}
+
+ul:nth-of-type(2) li::before {
+    content: "+ ";
+    font-size: 25px;
+}
+
+.email, .mobile {
+    color: rgb(10, 147, 189);
+    font-weight: bold;
+}
+
+.email {
+    padding-right: 20px;
+}
+
+.mobile {
+    padding-right: 74px;
+}
+
+.facebook, .twitter, .github {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    display: inline-block;
+    text-indent: 110%;
+    overflow: hidden;
+    background-size: contain;
+    position: relative;
+    transition: top .3s, left .3s, box-shadow .3s;
+    box-shadow: 0 0 0 grey;
+    top: 0px;
+    left: 0px;
+}
+
+.facebook:hover , .twitter:hover, .github:hover {
+  top: -5px;
+  left: -5px;
+  box-shadow: 5px 5px 0 grey;
+
+}
+
+.facebook {
+    background-image: url(fcb.svg);
+}
+
+.twitter {
+    background-image: url(twitter.svg);
+}
+
+.github {
+    background-image: url(github.svg);
+}
+
+ul br + small {
+    padding-left: 60px;
+}
+
+small {
+    padding-right: 20px;
+}
+
+.title {
+    padding-right: 30px;
+}
