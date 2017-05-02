@@ -14,4 +14,4 @@ var weeks = 17;
 var days = 5;
 
 console.log('Hours spent with coding: ' + hours*days*weeks);
-console.log('Percentage of the coding hours: ' + (52/(24*days))*100)
+console.log('Percentage of the coding hours: ' + (52/(24*days))*100);
