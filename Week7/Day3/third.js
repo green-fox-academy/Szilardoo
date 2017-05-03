@@ -6,7 +6,7 @@
 var magicNumbers = [1, 3, 5, 7];
 
 function thirdElement(list){
-	return list[2]
+	return list[2];
 }
 
-console.log(thirdElement(magicNumbers))
+console.log(thirdElement(magicNumbers));
