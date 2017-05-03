@@ -15,16 +15,21 @@
 var size = 4;
 var size2 = size;
 var zero2 = '';
+var list = [];
 
 for (var i = 1; i <= size; i++){
 	size2 -=1;
-	var zero = '0';
+	var zero = '0 ';
 	for (var j = 1 ; j <= size2-1; j ++){
-		zero += '0';
+		zero += '0 ';
 	}
 	if (size2 === 0) {
 			zero = '';
 		}
-	console.log(zero + '1' + zero2);
-	zero2 += '0';
+	list.push([zero + '1' + zero2]);
+	zero2 += ' 0';
+}
+
+for (var f = 0; f < list.length; f++ ){
+	console.log(list[f].join())
 }
