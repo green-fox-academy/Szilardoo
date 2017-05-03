@@ -18,3 +18,8 @@ function reverse(list) {
 }
 
 console.log(reverse(aj))
+
+aj = [3, 4, 5, 6, 7];
+aj = aj.reverse()
+
+console.log(aj)
