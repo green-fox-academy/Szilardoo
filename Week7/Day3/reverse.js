@@ -11,10 +11,10 @@ var aj = [3, 4, 5, 6, 7];
 
 function reverse(list) {
 	var reversedList = [];
-	for (var i = 0; i < list.length; i++){
-		reversedList.unshift(list.pop());
+	while(list.length !== 0){
+		reversedList.push(list.pop());
 	}
 	return reversedList;
 }
 
-console.log()
+console.log(reverse(aj))
