@@ -9,4 +9,4 @@ var b = abc[0];
 abc[0] = abc[2];
 abc[2] = b;
 
-console.log(abc)
+console.log(abc);
