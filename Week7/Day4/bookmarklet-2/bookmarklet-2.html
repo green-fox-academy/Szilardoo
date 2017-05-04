@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: Bookmarklets</title>
+</head>
+<body>
+  <a href="javascript:function greenfox() { var h1 = document.querySelectorAll('h1');for (var i = 0; i < h1.length; i++) {h1[i].textContent = 'Green Fox Academy Conquers the World';};var img = document.querySelectorAll('img');for (var i = 0; i < img.length; i++) {img[i].setAttribute('src', 'http://bit.ly/lpgreenfox');}} greenfox();">
+    Bookmarklet 2
+  </a>
+  <h1>Antoine de Saint-Exupery's 110th Birthday</h1>
+  <img src="http://placekitten.com/200/300">
+  <img src="http://placekitten.com/200/100">
+
+  <!-- You can work in the html or in a separate js file. Like:
+  <script>
+    Create a script that replaces every image
+    with this: http://bit.ly/lpgreenfox
+    Create a bookmarklet that does that on any website.
+    </script>
+    OR
+  <script src="bookmarklet-2.js"></script> -->
+
+  <script>
+     var img = document.querySelectorAll('img');
+
+    for (var i = 0; i < img.length; i++) {
+      img[i].setAttribute('src', 'http://bit.ly/lpgreenfox');
+    }
+  </script>
+</body>
+</html>
