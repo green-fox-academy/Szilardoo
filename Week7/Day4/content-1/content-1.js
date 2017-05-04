@@ -1,6 +1,6 @@
 'use strict';
 
-var heading = document.querySelector('head');
+var heading = document.querySelector('h1');
 
 alert(heading.innerHTML);
 
