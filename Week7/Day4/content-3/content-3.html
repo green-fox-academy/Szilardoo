@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: innerHTML, textContent</title>
+</head>
+<body>
+  <p>apple banana <strong>cat</strong> dog</p>
+  <p class="output1">elephant</p>
+  <p class="output2">fox</p>
+
+  <!-- You can work in the html or in a separate js file. Like:
+  <script>
+    fill output1 with the first paragraph's content, text only.
+    fill output2 with the first paragraph's content keeping the cat strong.
+  </script>
+  OR
+  <script src="content-3.js"></script> -->
+  <script>
+  var output1 = document.getElementsByClassName('output1')[0];
+  var firstParagraph = document.querySelector('p');
+  output1.textContent = firstParagraph.textContent;
+  var output2 = document.getElementsByClassName('output2')[0];
+  output2.innerHTML = firstParagraph.innerHTML;
+  </script>
+</body>
+</html>
