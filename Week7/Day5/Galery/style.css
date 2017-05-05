@@ -1,0 +1,33 @@
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.photo {
+	display: inline-flex;
+}
+
+img {
+	width: 800px;
+	height: 450px;
+}
+
+button {
+	width: 50px;
+	font-size: 50px;
+}
+
+.pic {
+	display: flex;
+	align-items: flex-end;
+}
+
+.title {
+	display: flex;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	width: 780px;
+	color: white;
+	height: 110px;
+	padding-left: 20px;
+}
