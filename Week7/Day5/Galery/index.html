@@ -78,8 +78,6 @@
         img.setAttribute('src', name);
       }
       for (var i = 0; i < pictures.length; i++){
-        console.log(name);
-        console.log(pictures[i].name);
         if ( name === pictures[i].name ){
           h3.textContent = pictures[i].title;
           p.textContent = pictures[i].text;
@@ -89,7 +87,8 @@
       var getPic = document.getElementsByClassName(pictures[j].name);
       if (getPic[0].classList.contains(name)) {
         getPic[0].setAttribute('style', 'box-shadow: 10px 10px 5px black;');
-        console.log(true);
+        } else{
+          getPic[0].setAttribute('style', 'box-shadow: 0px 0px 0px black;');
         }
       }
     }
@@ -101,8 +100,6 @@
         img.setAttribute('src', name);
       }
       for (var i = 0; i < pictures.length; i++){
-        console.log(name);
-        console.log(pictures[i].name);
         if ( name === pictures[i].name ){
           h3.textContent = pictures[i].title;
           p.textContent = pictures[i].text;
@@ -112,10 +109,14 @@
       var getPic = document.getElementsByClassName(pictures[j].name);
       if (getPic[0].classList.contains(name)) {
         getPic[0].setAttribute('style', 'box-shadow: 10px 10px 5px black;');
-        console.log(true);
+        }else{
+          getPic[0].setAttribute('style', 'box-shadow: 0px 0px 0px black;');
         }
       }
     }
+
+    var basic = document.getElementsByClassName('1.jpg');
+    basic[0].setAttribute('style', 'box-shadow: 10px 10px 5px black;');
 
     left.addEventListener("click", nextPic);
     right.addEventListener("click", prevPic);

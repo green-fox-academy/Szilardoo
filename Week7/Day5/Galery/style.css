@@ -26,6 +26,10 @@ img {
 	border-radius: 4px;
 }
 
+.thumbnails>img:hover {
+	cursor: pointer;
+}
+
 .image {
 	width: 800px;
 	height: 450px;
