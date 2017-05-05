@@ -68,12 +68,22 @@
       newPic.setAttribute('src', pictures[i].name);
       thumbnails.appendChild(newPic);
       newPic.className = pictures[i].name;
-      newPic.setAttribute('onclick', 'nextPic()')
+      newPic.setAttribute('onclick', 'showPic(this)')
     }
 
     var miniPics = document.querySelectorAll('.thumbnails img');
-    console.log(miniPics);
 
+    function showPic(element){
+      var pic = element.getAttribute('class');
+      img.setAttribute('src', pic);
+      for (var i = 0; i < pictures.length; i++){
+        if ( pic === pictures[i].name ){
+          h3.textContent = pictures[i].title;
+          p.textContent = pictures[i].text;
+        }
+      }
+      miniPictureShador(pic);
+    }
 
     function nextPic(){
       if (next < 6 ) {
@@ -92,14 +102,7 @@
           p.textContent = pictures[i].text;
         }
       }
-      for(var j = 0; j < pictures.length; j++){
-      var getPic = document.getElementsByClassName(pictures[j].name);
-      if (getPic[0].classList.contains(name)) {
-        getPic[0].setAttribute('style', 'box-shadow: 10px 10px 5px black;');
-        } else{
-          getPic[0].setAttribute('style', 'box-shadow: 0px 0px 0px black;');
-        }
-      }
+      miniPictureShador(name);
     }
 
     function prevPic(){
@@ -119,6 +122,10 @@
           p.textContent = pictures[i].text;
         }
       }
+      miniPictureShador(name);
+    }
+
+    function miniPictureShador(name) {
       for(var j = 0; j < pictures.length; j++){
       var getPic = document.getElementsByClassName(pictures[j].name);
       if (getPic[0].classList.contains(name)) {
