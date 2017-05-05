@@ -23,11 +23,19 @@ button {
 }
 
 .title {
-	display: flex;
 	background-color: rgba(0,0,0,0.5);
 	position: absolute;
 	width: 780px;
 	color: white;
-	height: 110px;
+	height: 95px;
 	padding-left: 20px;
+	padding-top: 5px;
+}
+
+h3 {
+	line-height: 0px;
+}
+
+p {
+	color: grey;
 }
