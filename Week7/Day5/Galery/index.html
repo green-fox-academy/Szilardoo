@@ -59,6 +59,7 @@
     var left = document.querySelector('.left');
     var h3 = document.querySelector('h3');
     var p = document.querySelector('p');
+    var right = document.querySelector('.right');
 
 
     function nextPic(){
@@ -77,8 +78,26 @@
       }
     }
 
+    function prevPic(){
+      if (next > 1) {
+        next -= 1;
+        name = next.toString() + '.jpg';
+        img.setAttribute('src', name);
+      }
+      for (var i = 0; i < pictures.length; i++){
+        console.log(name);
+        console.log(pictures[i].name);
+        if ( name === pictures[i].name ){
+          h3.textContent = pictures[i].title;
+          p.textContent = pictures[i].text;
+        }
+      }
+    }
+
+
 
     left.addEventListener("click", nextPic);
+    right.addEventListener("click", prevPic);
 
   </script>
 
