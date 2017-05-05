@@ -9,17 +9,19 @@
   <div class = "photo viewer">
     <button class = "right"> < </button>
     <div class = "pic">
-      <img src="1.jpg">
+      <img class = "image" src="1.jpg">
       <div class = "title"> 
-        <h3>Szöveg</h3>
-        <p>Valami</p>
+        <h3>Super Girl</h3>
+        <p>Super gilr from Injustice leauge 2. Super futuristic design.</p>
       </div>
     </div>
     <button class = "left"> > </button>
   </div>
   <div class = "thumbnails">
   </div>
+
   <script>
+
     var pictures = [{
       name: '1.jpg',
       title: 'Super Girl',
@@ -53,10 +55,32 @@
 
     var next = 1;
     var name = next.toString() + '.jpg';
-    console.log(name);
+    var img = document.querySelector('.image');
+    var left = document.querySelector('.left');
+    var h3 = document.querySelector('h3');
+    var p = document.querySelector('p');
 
 
+    function nextPic(){
+      if (next < 6) {
+        next += 1;
+        name = next.toString() + '.jpg';
+        img.setAttribute('src', name);
+      }
+      for (var i = 0; i < pictures.length; i++){
+        console.log(name);
+        console.log(pictures[i].name);
+        if ( name === pictures[i].name ){
+          h3.textContent = pictures[i].title;
+          p.textContent = pictures[i].text;
+        }
+      }
+    }
+
+
+    left.addEventListener("click", nextPic);
 
   </script>
+
 </body>
 </html>
