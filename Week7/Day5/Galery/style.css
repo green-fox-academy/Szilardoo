@@ -7,7 +7,18 @@ body {
 	display: inline-flex;
 }
 
+main {
+	display: flex;
+	flex-direction: column;
+}
+
 img {
+	width: 100px;
+	height: 70px;
+	padding-right: 10px;
+}
+
+.image {
 	width: 800px;
 	height: 450px;
 }
@@ -38,4 +49,11 @@ h3 {
 
 p {
 	color: grey;
+}
+
+.thumbnails {
+	margin: 30px;
+	display: inline-block;
+	justify-content: center;
+	display: flex;
 }

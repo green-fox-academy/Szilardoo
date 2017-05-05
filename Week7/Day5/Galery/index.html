@@ -6,20 +6,21 @@
   <title>My first Galery.</title>
 </head>
 <body>
-  <div class = "photo viewer">
-    <button class = "right"> < </button>
-    <div class = "pic">
-      <img class = "image" src="1.jpg">
-      <div class = "title"> 
-        <h3>Super Girl</h3>
-        <p>Super gilr from Injustice leauge 2. Super futuristic design.</p>
+  <main>
+    <div class = "photo viewer">
+      <button class = "right"> < </button>
+      <div class = "pic">
+        <img class = "image" src="1.jpg">
+        <div class = "title"> 
+          <h3>Super Girl</h3>
+          <p>Super gilr from Injustice leauge 2. Super futuristic design.</p>
+        </div>
       </div>
+      <button class = "left"> > </button>
     </div>
-    <button class = "left"> > </button>
-  </div>
-  <div class = "thumbnails">
-  </div>
-
+    <div class = "thumbnails">
+    </div>
+  </main>
   <script>
 
     var pictures = [{
@@ -60,6 +61,7 @@
     var h3 = document.querySelector('h3');
     var p = document.querySelector('p');
     var right = document.querySelector('.right');
+    var thumbnails = document.querySelector('.thumbnails');
 
 
     function nextPic(){
@@ -98,6 +100,13 @@
 
     left.addEventListener("click", nextPic);
     right.addEventListener("click", prevPic);
+
+    for ( var i = 0; i < pictures.length; i++){
+      var newPic = document.createElement('img');
+      newPic.setAttribute('src', pictures[i].name);
+      thumbnails.appendChild(newPic);
+
+    }
 
   </script>
 
