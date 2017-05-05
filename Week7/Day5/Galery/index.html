@@ -41,7 +41,7 @@
     {
       name: '4.jpg',
       title: 'Skyrim',
-      text: 'Skyrim, girl character walking with full armed.'
+      text: 'Skyrim, girl character walking, full armed.'
     },
     {
       name: '5.jpg',
@@ -63,6 +63,13 @@
     var right = document.querySelector('.right');
     var thumbnails = document.querySelector('.thumbnails');
 
+    for ( var i = 0; i < pictures.length; i++){
+      var newPic = document.createElement('img');
+      newPic.setAttribute('src', pictures[i].name);
+      thumbnails.appendChild(newPic);
+      newPic.className = pictures[i].name;
+    }
+
 
     function nextPic(){
       if (next < 6) {
@@ -76,6 +83,13 @@
         if ( name === pictures[i].name ){
           h3.textContent = pictures[i].title;
           p.textContent = pictures[i].text;
+        }
+      }
+      for(var j = 0; j < pictures.length; j++){
+      var getPic = document.getElementsByClassName(pictures[j].name);
+      if (getPic[0].classList.contains(name)) {
+        getPic[0].setAttribute('style', 'box-shadow: 10px 10px 5px black;');
+        console.log(true);
         }
       }
     }
@@ -94,19 +108,17 @@
           p.textContent = pictures[i].text;
         }
       }
+      for(var j = 0; j < pictures.length; j++){
+      var getPic = document.getElementsByClassName(pictures[j].name);
+      if (getPic[0].classList.contains(name)) {
+        getPic[0].setAttribute('style', 'box-shadow: 10px 10px 5px black;');
+        console.log(true);
+        }
+      }
     }
-
-
 
     left.addEventListener("click", nextPic);
     right.addEventListener("click", prevPic);
-
-    for ( var i = 0; i < pictures.length; i++){
-      var newPic = document.createElement('img');
-      newPic.setAttribute('src', pictures[i].name);
-      thumbnails.appendChild(newPic);
-
-    }
 
   </script>
 
