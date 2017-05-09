@@ -29,6 +29,10 @@ button {
 	border-radius: 10px;
 }
 
+button:active {
+	background: linear-gradient(to bottom, #7db9e8 6%,#2989d8 38%,#207cca 58%,#1e5799 96%);
+}
+
 .level {
 	display: flex;
 	width: 300px;
