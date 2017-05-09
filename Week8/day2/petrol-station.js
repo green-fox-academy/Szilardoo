@@ -38,7 +38,6 @@ var station = {
 
 }
 
-
 console.log(car.petrolLevel);
 console.log(station.petrolStorage);
 
