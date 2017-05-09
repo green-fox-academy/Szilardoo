@@ -1,3 +1,5 @@
+'use strict';
+
 function sharpie(color,width) {
 	this.color = color;
 	this.width = width;
