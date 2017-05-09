@@ -19,10 +19,13 @@
   <div class = "levels">
   </div>
   <script>
-  
-  var view = new elevatorView();
-  var modell = new elevatorModell();
 
+  var elevatorStart = elevatorController();
+
+  function elevatorController() {
+    this.view = new elevatorView();
+    this.modell = new elevatorModell();
+  }
 
   function elevatorModell() {
     this.whichLevel = 9;
@@ -55,7 +58,7 @@
     }
 
     this.moveDown = function() {
-      if ( this. whichLevel < this.levels.length){
+      if ( this. whichLevel < this.levels.length-1){
         this.whichLevel++;
       }
       for (var i = 0; i < this.levels.length; i++){
