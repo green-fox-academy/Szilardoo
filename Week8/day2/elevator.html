@@ -89,11 +89,18 @@
       this.levels[this.whichLevel].textContent = this.stringPeople;
     }
 
+    this.timedMoveUp = function() {
+      setTimeout(this.moveUp.bind(this), 600);
+    }
+
+    this.timedMoveDown = function() {
+      setTimeout(this.moveDown.bind(this), 600);
+    }
 
     this.add.addEventListener("click", this.addPeople.bind(this));
     this.remove.addEventListener("click", this.removePeople.bind(this));
-    this.up.addEventListener("click", this.moveUp.bind(this));
-    this.down.addEventListener("click", this.moveDown.bind(this));
+    this.up.addEventListener("click", this.timedMoveUp.bind(this));
+    this.down.addEventListener("click", this.timedMoveDown.bind(this));
 
   }
 
