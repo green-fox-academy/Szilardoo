@@ -17,18 +17,12 @@
     </div>
   </div>
   <div class = "levels">
-    <div class = "level 10"></div>
-    <div class = "level 9"></div>
-    <div class = "level 8"></div>
-    <div class = "level 7"></div>
-    <div class = "level 6"></div>
-    <div class = "level 5"></div>
-    <div class = "level 4"></div>
-    <div class = "level 3"></div>
-    <div class = "level 2"></div>
-    <div class = "level 1"></div>
   </div>
   <script>
+  
+  var view = new elevatorView();
+  var modell = new elevatorModell();
+
 
   function elevatorModell() {
     this.whichLevel = 9;
@@ -99,8 +93,14 @@
 
   }
 
-  var modell = new elevatorModell();
-
+  function elevatorView() {
+    this.elevator = document.querySelector('.levels');
+    for(var i = 0; i < 10; i++){
+      this.createLevel = document.createElement("div");
+      this.createLevel.setAttribute('class', 'level')
+      this.elevator.appendChild(this.createLevel);
+    }
+  }
 
   </script>
 </body>
