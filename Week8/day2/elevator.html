@@ -46,13 +46,12 @@
         this.whichLevel--;
       }
       for (var i = 0; i < this.levels.length; i++){
-        if (this.whichLevel >= 0){
-          this.levels[this.whichLevel].textContent = this.stringPeople;
-          this.levels[this.whichLevel].setAttribute('style', 'background-color: green;')
-        }
-        if(this.whichLevel >= 0 && i != this.whichLevel){
+        if (i != this.whichLevel){
           this.levels[i].textContent = '';
           this.levels[i].setAttribute('style', 'background-color: white;')
+        }else{
+          this.levels[this.whichLevel].textContent = this.stringPeople;
+          this.levels[this.whichLevel].setAttribute('style', 'background-color: green;')
         }
       }
     }
@@ -62,13 +61,13 @@
         this.whichLevel++;
       }
       for (var i = 0; i < this.levels.length; i++){
-        if (this.whichLevel <= 9){
-          this.levels[this.whichLevel].textContent = this.stringPeople;
-          this.levels[this.whichLevel].setAttribute('style', 'background-color: green;')
-        }
-        if(this.whichLevel <= 9 && i != this.whichLevel){
+        if (i != this.whichLevel){
           this.levels[i].textContent = '';
           this.levels[i].setAttribute('style', 'background-color: white;')
+        }
+        if(){
+          this.levels[this.whichLevel].textContent = this.stringPeople;
+          this.levels[this.whichLevel].setAttribute('style', 'background-color: green;')
         }
       }
     }

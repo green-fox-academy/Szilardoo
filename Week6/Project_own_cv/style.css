@@ -1,5 +1,5 @@
 header {
-    background-color: rgb(149, 149, 149);
+    z;
     height: 400px;
     display: flex;
     flex-direction: row;
@@ -29,6 +29,7 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 7px;
  }
 
 img {
@@ -74,13 +75,18 @@ img {
         position: relative;
     }
 
+.lines .barres li:hover{
+      top: -5px;
+  left: -5px;
+}
+
 h2 {
     text-transform: uppercase;
 }
 .Cont {
     text-align: right;
     position: relative;
-    top: -270px;
+    top: -300px;
     margin-bottom: -90px;
 }
 
@@ -95,7 +101,7 @@ h2 {
 }
 
 h2:nth-of-type(2) {
-    padding-top: 190px;
+    padding-top: 220px;
 }
 
 h2:nth-of-type(4){

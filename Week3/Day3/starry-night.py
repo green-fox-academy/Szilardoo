@@ -17,7 +17,7 @@ grey =["#696969", "#808080", "#A9A9A9", "#C0C0C0", "#D3D3D3", "#DCDCDC"]
 
 arange=list(range(10, 290))
 canvas.create_rectangle(0, 0, 300, 300, fill="black")
-for i in range(random.randint(200, 900)):
+for i in range(random.randint(700,1000)):
     y = random.randint(10,290)
     x = random.randint(10,290)
     color = random.choice(grey)
