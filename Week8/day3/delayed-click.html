@@ -6,15 +6,26 @@
 </head>
 <body>
 
-  <button></button>
+  <button>Click!</button>
+  <div></div>
   <script>
 
   function buttonProperties(){
     this.button = document.querySelector('button');
+    this.textGoesHere = document.querySelector('div');
 
-    this.textShower
-  }
+    this.textShower = function(){
+      this.textGoesHere.textContent = '2 seconds ellapsed';
+    }
 
+    this.timedTextShower = function(){
+      setTimeout(this.textShower.bind(this), 2000);
+    }
+
+    this.button.addEventListener('click', this.timedTextShower.bind(this));
+    }
+
+  var start = new buttonProperties;
   </script>
 </body>
 </html>
