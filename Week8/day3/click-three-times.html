@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: Three click</title>
+</head>
+<body>
+
+  <button>Click!</button>
+  <div></div>
+  <script>
+
+  
+
+  function buttonProperties(){
+    this.counter = 0;
+    this.fiveSecond = false;
+    this.button = document.querySelector('button');
+    this.textGoesHere = document.querySelector('div');
+
+    this.textShower = function(){
+      this.counter++;
+      if(this.counter >= 3 && this.fiveSecond === true){
+        this.textGoesHere.textContent = '5 seconds ellapsed and clicked 3 times';
+      }
+    }
+
+    this.fiveSecondCounter = function(){
+      this.fiveSecond = true;
+    }
+
+    setTimeout(this.fiveSecondCounter.bind(this), 5000);
+
+    this.button.addEventListener('click', this.textShower.bind(this));
+    }
+
+  var start = new buttonProperties;
+  </script>
+</body>
+</html>
