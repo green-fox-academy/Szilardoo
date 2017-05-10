@@ -11,13 +11,9 @@ function printNumber(num) {
 selectLastEvenNumber([2, 5, 7, 8, 9, 11], printNumber); // should print 8
 
 function selectLastEvenNumber(array, cb) {
-	var list = [];
-	var num = 0;
-	array.forEach(function(element){
-		if(element % 2 === 0){
-			list.push(element);
-		}
+	var evens = array.filter(function(element){
+		return element % 2 === 0
 	})
-	num = list.pop();
+	var num = evens.pop();
 	return printNumber(num);
 } 
