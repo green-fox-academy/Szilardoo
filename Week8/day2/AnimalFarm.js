@@ -21,7 +21,11 @@ function farm(){
 	this.breed = function(animal) {
 		if (this.freePlaces > 0){
 			this.animals.push(animal)
+<<<<<<< HEAD
 			this.freePlaces--;
+=======
+            this.freePlaces--;
+>>>>>>> 6c003d6f102c48a17db415d3be0d53c829228e79
 		}
 	}
 	this.slaughter = function(){
@@ -34,7 +38,11 @@ function farm(){
 		for (var j = 0; j < this.animals.length; j++ ){
 			if (minHunger === this.animals[j].hunger){
 				delete this.animals[j];
+<<<<<<< HEAD
 				this.freePlaces++;
+=======
+                this.freePlaces++;
+>>>>>>> 6c003d6f102c48a17db415d3be0d53c829228e79
 			}
 		}
 	}
