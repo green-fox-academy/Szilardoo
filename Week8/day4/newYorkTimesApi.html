@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop</title>
+</head>
+<body>
+
+  <div>
+  <div>
+
+  <script>
+
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=apollo+2011+moon&api-key=ba4b8a33b2234c408efed908d5e60cea";
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url, true);
+    xhr.send('');
+    var list;
+
+    xhr.onreadystatechange = function(){
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      console.log(JSON.parse(xhr.response));
+      list = JSON.parse(xhr.response);
+      createSnippet()
+    }
+  }
+
+  var getDiv = document.querySelector('div');
+  var head;
+  var snippets;
+  var publication;
+  var permalink;
+
+
+
+  function createSnippet(){
+     for (var i = 0; i < 10; i++) {
+        head = document.createElement('h1');
+        snippets = document.createElement('p');
+        publication = document.createElement('p');
+        permalink = document.createElement('a');
+        permalink.setAttribute('href', list.response.docs[i].web_url);
+        permalink.textContent= 'Read more on the original website.';
+        var headText = list.response.docs[i].headline.main;
+        var snippetText = list.response.docs[i].snippet;
+        var publicationText = list.response.docs[i].pub_date;
+        head.textContent = headText;
+        snippets.textContent = snippetText;
+        publication.textContent = publicationText;
+        getDiv.appendChild(head);
+        getDiv.appendChild(snippets);
+        getDiv.appendChild(publication);
+        getDiv.appendChild(permalink);
+
+        
+    }
+  }
+
+
+
+  </script>
+</body>
+</html>
