@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 	<meta charset="UTF-8">
+ 	<title>Workshop</title>
+
+ 	<style type="text/css">
+ 		body {
+ 			display: flex;
+ 			justify-content: center;
+ 		}
+
+ 		div {
+ 			display: flex;
+ 			flex-direction: column;
+ 			margin: 20px;
+ 		}
+
+ 		.search {
+ 			display: flex;
+ 			flex-direction: row;
+ 			justify-content: center;
+ 		}
+
+ 	</style>
+</head>
+<body>
+
+	<div>
+		<div class = 'search'>
+			<label for='search'>Search:</label>
+			<input type="text" name="search"><br>
+			<button>Search</button>
+		</div>
+		<div>
+			<iframe
+			  width="600"
+			  height="450"
+			  frameborder="0" style="border:0"
+			  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-CQTG78yNyFqjPXueB3ZuL58mvg0f57c
+			    &q=Space+Needle,Seattle+WA" allowfullscreen>
+			</iframe>
+			<div><p class = "coordinates"></p></div>
+		</div>
+	<div>
+
+  <script>
+
+  	var city = "New+York"
+
+	var button = document.querySelector('button');
+	var input = document.querySelector('input');
+	var iframe = document.querySelector('iframe');
+	var paragraph =  document.querySelector('p');
+	var coordinates =  document.querySelector('.coordinates');
+
+
+	button.addEventListener('click', function(){
+
+		city = input.value;
+		iframe.src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyD-CQTG78yNyFqjPXueB3ZuL58mvg0f57c&q="+city;
+			
+			var url = "https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location="+city;
+
+			var createLat;
+
+		 	var xhr = new XMLHttpRequest();
+
+			xhr.open('GET', url, true);
+			xhr.setRequestHeader("X-Mashape-Key", "TSLv16EPU7mshhPJ4A5psKtzwBHNp1CiQa1jsnxek8lReWjH1M");
+			xhr.setRequestHeader("Accept", "application/json");
+			xhr.send('');
+			var list;
+
+			xhr.onreadystatechange = function(){
+			if (xhr.readyState === XMLHttpRequest.DONE) {
+				list = JSON.parse(xhr.response);
+				coordinates.textContent = 'latitude: '+list.Results[0].lat+', longitude: '+list.Results[0].lon;
+			}
+		}
+
+	})
+
+	</script>
+</body>
+</html>
