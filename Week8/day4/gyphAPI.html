@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: Elevator</title>
+  <style>
+
+
+
+  </style>
+</head>
+<body>
+
+  <div>
+  <div>
+
+  <script>
+
+    var url = 'http://api.giphy.com/v1/gifs/search?q=gaming&api_key=dc6zaTOxFJmzC'; //A local page
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url, true);
+
+    xhr.send('');
+
+    var list;
+
+    var getDiv = document.querySelector('div');
+
+    xhr.onreadystatechange = function(){
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      list = JSON.parse(xhr.response);
+      createGif()
+    }
+  }
+
+
+
+  
+
+   function createGif(){
+     for (var i = 0; i < 16; i++) {
+        var newImage = document.createElement('img');
+        var getGIFUrl = list.data[i].images.original.url;
+        newImage.setAttribute('src', getGIFUrl);
+        getDiv.appendChild(newImage);
+    }
+  }
+
+
+  </script>
+</body>
+</html>
