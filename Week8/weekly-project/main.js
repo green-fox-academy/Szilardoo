@@ -1,16 +1,36 @@
 'use strict';
 
 
-/*var getSubButton = document.querySelector('.sub');
-getSubButton.addEventListener('click', start);
 
-function start(){
-	var start = start = new addPost();
-}*/
+
+
+var url = 'https://time-radish.glitch.me/posts';
+var xhrSend = new XMLHttpRequest();
+
+xhrSend.open('POST', url, true);
+
+xhrSend.setRequestHeader('Accept', 'application/json')
+xhrSend.setRequestHeader('Content-Type', 'application/json')
+
+if (document.location.href === 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/add.html'){
+	var subButton = document.querySelector('button');
+	subButton.addEventListener('click', function(){
+		var url = document.querySelector(".url");
+		var urlValue = url.value;
+		var title = document.querySelector("textarea");
+		var titleValue = title.value;
+		xhrSend.send(JSON.stringify({
+			  "title": titleValue,
+			  "href": urlValue
+			}));
+
+		var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
+		setTimeout(timed, 700);
+	})
+}
 
 var xhr = new XMLHttpRequest();
 
-var url = 'https://time-radish.glitch.me/posts';
 
 xhr.open('GET', url, true);
 
@@ -21,11 +41,11 @@ xhr.send('');
 var list;
 
 xhr.onreadystatechange = function(){
-if (xhr.readyState === XMLHttpRequest.DONE) {
+if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
   console.log(JSON.parse(xhr.response));
   list = JSON.parse(xhr.response);
   for(var i = 0; i < list.posts.length; i++) {
-  		var asd = new addPost(list.posts[i].score,list.posts[i].title, list.posts[i].owner);
+  		var asd = new addPost(list.posts[i].title, list.posts[i].href,list.posts[i].score, list.posts[i].owner);
   	
   	}
 	}
@@ -33,13 +53,14 @@ if (xhr.readyState === XMLHttpRequest.DONE) {
 
 var counter= 0;
 
-function addPost(position, post, created='unknown') {
+function addPost( post, href , position=0, created='unknown') {
 
 	counter ++;
 
 	this.position = position;
 	this.post = post;
 	this.createdBy = created;
+	this.originalPage = href;
 
 	//document.location.href='reddit.html';
 
@@ -77,6 +98,7 @@ function addPost(position, post, created='unknown') {
 
 	this.createPostText = document.createElement('a');
 	this.createPostText.className = 'postText';
+	this.createPostText.href = this.originalPage;
 	this.createPostText.textContent = this.post;
 	this.createPost.appendChild(this.createPostText);
 
@@ -121,5 +143,3 @@ function addPost(position, post, created='unknown') {
 	}.bind(this))
 
 }
-
-
