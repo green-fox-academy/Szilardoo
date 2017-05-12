@@ -8,26 +8,48 @@ function start(){
 	var start = start = new addPost();
 }*/
 
+var xhr = new XMLHttpRequest();
 
-function addPost() {
-	console.log('asd');
+var url = 'https://time-radish.glitch.me/posts';
 
-	this.counter = 1;
-	this.position = 0;
-	this.post = 'The text of the post';
-	this.createdBy = 'somebody';
+xhr.open('GET', url, true);
+
+xhr.setRequestHeader('Accept', 'application/json')
+
+xhr.send('');
+
+var list;
+
+xhr.onreadystatechange = function(){
+if (xhr.readyState === XMLHttpRequest.DONE) {
+  console.log(JSON.parse(xhr.response));
+  list = JSON.parse(xhr.response);
+  for(var i = 0; i < list.posts.length; i++) {
+  		var asd = new addPost(list.posts[i].score,list.posts[i].title, list.posts[i].owner);
+  	
+  	}
+	}
+}
+
+var counter= 0;
+
+function addPost(position, post, created='unknown') {
+
+	counter ++;
+
+	this.position = position;
+	this.post = post;
+	this.createdBy = created;
 
 	//document.location.href='reddit.html';
 
 	this.getMain = document.querySelector('main');
-	console.log(this.getMain);
 	this.createSection = document.createElement('section');
-	console.log(this.createSection);
 	this.getMain.appendChild(this.createSection);
 
 	this.createDivNumber = document.createElement('div');
 	this.createDivNumber.className = 'number';
-	this.createDivNumber.textContent = this.counter.toString();
+	this.createDivNumber.textContent = counter.toString();
 	this.createSection.appendChild(this.createDivNumber);
 
 	this.createPosDiv = document.createElement('div');
@@ -100,4 +122,4 @@ function addPost() {
 
 }
 
-var asd = new addPost();
+
