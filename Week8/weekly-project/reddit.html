@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <a href="reddit.html" class="main">MAIN</a>
+    -
+    <a href="add.html" class="add">CREATE NEW POST</a>
+  </header>
+
+  <main>
+
+
+
+
+
+
+
+  </main>
+
+  <script>
+
+    var url = ;
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url, true);
+    xhr.send('');
+    var list;
+
+    xhr.onreadystatechange = function(){
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      console.log(JSON.parse(xhr.response));
+      list = JSON.parse(xhr.response);
+    }
+  }
+
+  </script>
+</body>
+</html>
