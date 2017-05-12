@@ -45,7 +45,7 @@ if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file://
   console.log(JSON.parse(xhr.response));
   list = JSON.parse(xhr.response);
   for(var i = 0; i < list.posts.length; i++) {
-  		var asd = new addPost(list.posts[i].title, list.posts[i].href,list.posts[i].score, list.posts[i].owner);
+  		var asd = new addPost(list.posts[i].timestamp,list.posts[i].id,list.posts[i].title, list.posts[i].href,list.posts[i].score, list.posts[i].owner);
   	
   	}
 	}
@@ -53,10 +53,14 @@ if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file://
 
 var counter= 0;
 
-function addPost( post, href , position=0, created='unknown') {
+
+
+function addPost(timestamp,id, post, href , position=0, created='unknown') {
 
 	counter ++;
 
+	this.timestamp = timestamp;
+	this.id = id;
 	this.position = position;
 	this.post = post;
 	this.createdBy = created;
@@ -140,6 +144,20 @@ function addPost( post, href , position=0, created='unknown') {
 			this.createDown.style.backgroundImage = "url(downvoted.png)";
 			this.canVote = false;
 		}
+	}.bind(this))
+
+	this.createRemove.addEventListener('click', function(){
+		var url = 'https://time-radish.glitch.me/posts/'+this.id;
+		var xhrSend = new XMLHttpRequest();
+
+		xhrSend.open('DELETE', url, true);
+
+		xhrSend.setRequestHeader('Accept', 'application/json')
+		xhrSend.send();
+
+		var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
+		setTimeout(timed, 300);
+		
 	}.bind(this))
 
 }
