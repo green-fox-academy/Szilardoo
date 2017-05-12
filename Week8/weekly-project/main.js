@@ -130,8 +130,17 @@ function addPost(timestamp,id, post, href , position=0, created='unknown') {
 
 	this.createUp.addEventListener('click', function(){
 		if(this.canVote) {
-			this.position++;
-			this.createPositon.textContent = this.position.toString();
+			var url = 'https://time-radish.glitch.me/posts/'+this.id+'/upvote';
+			var xhrSend = new XMLHttpRequest();
+
+			xhrSend.open('PUT', url, true);
+
+			xhrSend.setRequestHeader('Accept', 'application/json')
+			xhrSend.send();
+
+			var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
+			setTimeout(timed, 500);
+			
 			this.createUp.style.backgroundImage = "url(upvoted.png)";
 			this.canVote = false;
 		}
@@ -139,8 +148,17 @@ function addPost(timestamp,id, post, href , position=0, created='unknown') {
 
 	this.createDown.addEventListener('click', function(){
 		if(this.canVote) {
-			this.position--;
-			this.createPositon.textContent = this.position.toString();
+			var url = 'https://time-radish.glitch.me/posts/'+this.id+'/downvote';
+			var xhrSend = new XMLHttpRequest();
+
+			xhrSend.open('PUT', url, true);
+
+			xhrSend.setRequestHeader('Accept', 'application/json')
+			xhrSend.send();
+
+			var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
+			setTimeout(timed, 500);
+
 			this.createDown.style.backgroundImage = "url(downvoted.png)";
 			this.canVote = false;
 		}
@@ -156,7 +174,7 @@ function addPost(timestamp,id, post, href , position=0, created='unknown') {
 		xhrSend.send();
 
 		var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
-		setTimeout(timed, 300);
+		setTimeout(timed, 500);
 		
 	}.bind(this))
 
