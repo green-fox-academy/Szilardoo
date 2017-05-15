@@ -1,0 +1,3 @@
+function getApple() {
+	return 'alma';
+}
