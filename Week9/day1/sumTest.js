@@ -10,6 +10,7 @@ test('test sum', function (t) {
 	t.equal(sum([5]), 5, 'test with one element');
 	t.equal(sum(0), 0, 'test with null');
 	t.equal(sum('asd'), 0, 'test with string');
+	t.equal(sum(['asd']), 0, 'test with string');
 	t.end();
 });
 
