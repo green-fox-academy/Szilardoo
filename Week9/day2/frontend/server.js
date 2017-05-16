@@ -1,8 +1,11 @@
 'use strict';
 
 const express = require('express');
+var bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
@@ -48,5 +51,34 @@ app.get('/appenda/:append', function(req, res) {
 	})
 })
 
+app.post('/dountil/:what/', function(req, res) {
+	const param = req.params.what;
+	const until = req.body.until;
+
+	let sum = function(num) {
+		let sum = 0;
+		for(var i = 0; i <= num; i++){
+			sum += i;
+		}
+		return sum;
+	}
+	let fact = function(num) {
+		let fact = 1;
+		for(var i = 1; i <= num; i++){
+			fact *= i;
+		}
+		return fact;
+	}
+
+	if(param === 'factor'){
+		res.send({
+			"result": fact(until) 
+		})
+	}else{
+		res.send({
+			"result": sum(until) 
+	})
+	}
+})	
 
 app.listen(8080);
