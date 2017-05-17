@@ -79,6 +79,6 @@ app.post('/dountil/:what/', function(req, res) {
 			"result": sum(until) 
 	})
 	}
-})	
+})
 
 app.listen(8080);

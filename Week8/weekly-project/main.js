@@ -1,58 +1,88 @@
 'use strict';
 
-var url = 'https://time-radish.glitch.me/posts';
-var xhrSend = new XMLHttpRequest();
-
-xhrSend.open('POST', url, true);
-
-xhrSend.setRequestHeader('Accept', 'application/json')
-xhrSend.setRequestHeader('Content-Type', 'application/json')
-
-if (document.location.href === 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/add.html'){
-	var subButton = document.querySelector('button');
-	subButton.addEventListener('click', function(){
-		var url = document.querySelector(".url");
-		var urlValue = url.value;
-		var title = document.querySelector("textarea");
-		var titleValue = title.value;
-		xhrSend.send(JSON.stringify({
-			  "title": titleValue,
-			  "href": urlValue
-			}));
-
-		var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
-		setTimeout(timed, 700);
-	})
-}
-
-var xhr = new XMLHttpRequest();
 
 
-xhr.open('GET', url, true);
+postToServer();
+getDataFromServer(post);
 
-xhr.setRequestHeader('Accept', 'application/json')
 
-xhr.send('');
 
-var list;
 
-xhr.onreadystatechange = function(){
-if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
-  console.log(JSON.parse(xhr.response));
-  list = JSON.parse(xhr.response);
-  for(var i = 0; i < list.posts.length; i++) {
-  		var asd = new addPost(list.posts[i].timestamp,list.posts[i].id,list.posts[i].title, list.posts[i].href,list.posts[i].score, list.posts[i].owner);
-  	
-  	}
+
+function postToServer(){
+	var url = 'https://time-radish.glitch.me/posts';
+	var xhrSend = new XMLHttpRequest();
+
+	xhrSend.open('POST', url, true);
+
+	xhrSend.setRequestHeader('Accept', 'application/json')
+	xhrSend.setRequestHeader('Content-Type', 'application/json')
+
+	if (document.location.href === 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/add.html'){
+		var subButton = document.querySelector('button');
+		subButton.addEventListener('click', function(){
+			var url = document.querySelector(".url");
+			var urlValue = url.value;
+			var title = document.querySelector("textarea");
+			var titleValue = title.value;
+			xhrSend.send(JSON.stringify({
+				  "title": titleValue,
+				  "href": urlValue
+				}));
+
+			var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
+			setTimeout(timed, 700);
+		})
 	}
 }
 
+
+
+function getDataFromServer(callback){
+
+	var url = 'https://time-radish.glitch.me/posts';
+	var xhr = new XMLHttpRequest();
+
+
+	xhr.open('GET', url, true);
+
+	xhr.setRequestHeader('Accept', 'application/json')
+
+	xhr.send('');
+
+	var list;
+
+	xhr.onreadystatechange = function(){
+	if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
+	  console.log(JSON.parse(xhr.response));
+	  list = JSON.parse(xhr.response);
+	  for(var i = 0; i < list.posts.length; i++) {
+	  		callback(list.posts[i].timestamp,list.posts[i].id,list.posts[i].title, list.posts[i].href, i,list.posts[i].score, list.posts[i].owner)
+	  	}
+		}
+	}
+}
+
+
+
+
+
+function post(timestamp, id, post, href , num, position, created){
+	var addPosts = new addPost(timestamp, id, post, href, num , position, created);
+}
+
+
+
+
 var counter= 0;
 
-function addPost(timestamp,id, post, href , position=0, created='unknown') {
+
+
+function addPost(timestamp,id, post, href , num,position=0, created='unknown') {
 
 	counter ++;
 
+	this.num = num
 	this.timestamp = timestamp;
 	this.id = id;
 	this.position = position;
@@ -117,41 +147,115 @@ function addPost(timestamp,id, post, href , position=0, created='unknown') {
 	this.createRemove.textContent = 'remove';
 	this.createModDiv.appendChild(this.createRemove);
 
+
+
+
 	this.createUp.addEventListener('click', function(){
-		if(this.canVote) {
-			var url = 'https://time-radish.glitch.me/posts/'+this.id+'/upvote';
-			var xhrSend = new XMLHttpRequest();
+		
+		var url = 'https://time-radish.glitch.me/posts/'+this.id+'/upvote';
+		var xhrSend = new XMLHttpRequest();
 
-			xhrSend.open('PUT', url, true);
+		xhrSend.open('PUT', url, true);
 
-			xhrSend.setRequestHeader('Accept', 'application/json')
-			xhrSend.send();
+		xhrSend.setRequestHeader('Accept', 'application/json')
+		xhrSend.send();
 
-			var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
-			setTimeout(timed, 500);
-			
-			this.createUp.style.backgroundImage = "url(upvoted.png)";
-		}
+
+//--------------------------------------------------------------------------------------------
+
+
+		xhrSend.onreadystatechange = function(){
+			if (xhrSend.readyState === XMLHttpRequest.DONE){
+			var url = 'https://time-radish.glitch.me/posts';
+			var xhr = new XMLHttpRequest();
+
+
+			xhr.open('GET', url, true);
+
+			xhr.setRequestHeader('Accept', 'application/json')
+
+			xhr.send('');
+
+			var list;
+
+			xhr.onreadystatechange = function(){
+			if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
+			  console.log(JSON.parse(xhr.response));
+			  list = JSON.parse(xhr.response);
+					this.createPositon.textContent = list.posts[this.num].score.toString()
+			  	}
+				}.bind(this)
+			}
+		}.bind(this)
+
+
+//-----------------------------------------------------------------------------------------------------
+
+		
+		this.createUp.style.backgroundImage = "url(upvoted.png)";
+
 	}.bind(this))
+
+
+
 
 	this.createDown.addEventListener('click', function(){
-		if(this.canVote) {
-			var url = 'https://time-radish.glitch.me/posts/'+this.id+'/downvote';
-			var xhrSend = new XMLHttpRequest();
+		var url = 'https://time-radish.glitch.me/posts/'+this.id+'/downvote';
+		var xhrSend = new XMLHttpRequest();
 
-			xhrSend.open('PUT', url, true);
+		xhrSend.open('PUT', url, true);
 
-			xhrSend.setRequestHeader('Accept', 'application/json')
-			xhrSend.send();
+		xhrSend.setRequestHeader('Accept', 'application/json')
+		xhrSend.send();
 
-			var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
-			setTimeout(timed, 500);
+		var xhr = new XMLHttpRequest();
 
-			this.createDown.style.backgroundImage = "url(downvoted.png)";
-		}
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+		xhrSend.onreadystatechange = function(){
+			if (xhrSend.readyState === XMLHttpRequest.DONE){
+			var url = 'https://time-radish.glitch.me/posts';
+			var xhr = new XMLHttpRequest();
+
+
+			xhr.open('GET', url, true);
+
+			xhr.setRequestHeader('Accept', 'application/json')
+
+			xhr.send('');
+
+			var list;
+
+			xhr.onreadystatechange = function(){
+			if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
+			  console.log(JSON.parse(xhr.response));
+			  list = JSON.parse(xhr.response);
+					this.createPositon.textContent = list.posts[this.num].score.toString()
+			  	}
+				}.bind(this)
+			}
+		}.bind(this)
+
+
+//------------------------------------------------------------------------------
+
+
+
+
+		this.createDown.style.backgroundImage = "url(downvoted.png)";
 	}.bind(this))
 
+
+
+
 	this.createRemove.addEventListener('click', function(){
+		this.fun = function (timestamp, id, post, href, num , position, created){
+			var addPosts = new addPost(timestamp, id, post, href, num , position, created);
+		}
+		getDataFromServer(this.fun);
 		var url = 'https://time-radish.glitch.me/posts/'+this.id;
 		var xhrSend = new XMLHttpRequest();
 
@@ -160,8 +264,9 @@ function addPost(timestamp,id, post, href , position=0, created='unknown') {
 		xhrSend.setRequestHeader('Accept', 'application/json')
 		xhrSend.send();
 
-		var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
-		setTimeout(timed, 500);
+
+
+
 	}.bind(this))
 
 }
