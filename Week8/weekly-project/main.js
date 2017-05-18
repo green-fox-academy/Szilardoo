@@ -1,41 +1,7 @@
 'use strict';
 
 
-
-postToServer();
 getDataFromServer();
-
-
-
-
-
-function postToServer(){
-	var url = 'https://time-radish.glitch.me/posts';
-	var xhrSend = new XMLHttpRequest();
-
-	xhrSend.open('POST', url, true);
-
-	xhrSend.setRequestHeader('Accept', 'application/json')
-	xhrSend.setRequestHeader('Content-Type', 'application/json')
-
-	if (document.location.href === 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/add.html'){
-		var subButton = document.querySelector('button');
-		subButton.addEventListener('click', function(){
-			var url = document.querySelector(".url");
-			var urlValue = url.value;
-			var title = document.querySelector("textarea");
-			var titleValue = title.value;
-			xhrSend.send(JSON.stringify({
-				  "title": titleValue,
-				  "href": urlValue
-				}));
-
-			var timed = function() {document.location.href = 'file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html';}
-			setTimeout(timed, 700);
-		})
-	}
-}
-
 
 
 function getDataFromServer(){
@@ -53,7 +19,7 @@ function getDataFromServer(){
 	var list;
 
 	xhr.onreadystatechange = function(){
-	if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
+	if (xhr.readyState === XMLHttpRequest.DONE) {
 	  console.log(JSON.parse(xhr.response));
 	  list = JSON.parse(xhr.response);
 	  		addPost(list);
@@ -63,33 +29,31 @@ function getDataFromServer(){
 
 
 
-
-
-
 function addPost(list) {
 	var counter= 0;
 
 	var getMain = document.querySelector('main');
 	getMain.innerHTML = '';
 	for(var i = 0; i < list.posts.length; i++) {
-		createAll(list.posts[i].timestamp,list.posts[i].id,list.posts[i].score,list.posts[i].title,list.posts[i].owner,list.posts[i].href,getMain, counter)
+		counter++
+		createAll(list.posts[i], getMain, counter)
 	}
 
 }
 
 
-function createAll(a,b,c,d,e,f,g,counter){
+function createAll(serveData,main,counter){
 
-		counter ++;
+		var counter = counter;
 
-		var getMain = g;
+		var getMain = main;
 
-		var timestamp = a;//list.posts[i].timestamp;
-		var id = b;//list.posts[i].id;
-		var position = c;//list.posts[i].score;
-		var post = d;//list.posts[i].title;
-		var createdBy = e;//list.posts[i].owner;
-		var originalPage = f;//list.posts[i].href;
+		var timestamp = serveData.timestamp;
+		var id = serveData.id;
+		var position = serveData.score;
+		var post = serveData.title;
+		var createdBy = serveData.owner;
+		var originalPage = serveData.href;
 
 		var createSection = document.createElement('section');
 		getMain.appendChild(createSection);
@@ -212,6 +176,12 @@ function createAll(a,b,c,d,e,f,g,counter){
 			}
 		}
 
+	})
+
+	createModify.addEventListener('click', function(){
+
+		document.location.href = 'modify.html#'+id;
+		
 	})
 
 }
