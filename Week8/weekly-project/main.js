@@ -3,7 +3,7 @@
 
 
 postToServer();
-getDataFromServer(post);
+getDataFromServer();
 
 
 
@@ -38,7 +38,7 @@ function postToServer(){
 
 
 
-function getDataFromServer(callback){
+function getDataFromServer(){
 
 	var url = 'https://time-radish.glitch.me/posts';
 	var xhr = new XMLHttpRequest();
@@ -56,9 +56,7 @@ function getDataFromServer(callback){
 	if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
 	  console.log(JSON.parse(xhr.response));
 	  list = JSON.parse(xhr.response);
-	  for(var i = 0; i < list.posts.length; i++) {
-	  		callback(list.posts[i].timestamp,list.posts[i].id,list.posts[i].title, list.posts[i].href, i,list.posts[i].score, list.posts[i].owner)
-	  	}
+	  		addPost(list);
 		}
 	}
 }
@@ -67,92 +65,94 @@ function getDataFromServer(callback){
 
 
 
-function post(timestamp, id, post, href , num, position, created){
-	var addPosts = new addPost(timestamp, id, post, href, num , position, created);
+
+function addPost(list) {
+	var counter= 0;
+
+	var getMain = document.querySelector('main');
+	getMain.innerHTML = '';
+	for(var i = 0; i < list.posts.length; i++) {
+		createAll(list.posts[i].timestamp,list.posts[i].id,list.posts[i].score,list.posts[i].title,list.posts[i].owner,list.posts[i].href,getMain, counter)
+	}
+
 }
 
 
+function createAll(a,b,c,d,e,f,g,counter){
 
+		counter ++;
 
-var counter= 0;
+		var getMain = g;
 
+		var timestamp = a;//list.posts[i].timestamp;
+		var id = b;//list.posts[i].id;
+		var position = c;//list.posts[i].score;
+		var post = d;//list.posts[i].title;
+		var createdBy = e;//list.posts[i].owner;
+		var originalPage = f;//list.posts[i].href;
 
+		var createSection = document.createElement('section');
+		getMain.appendChild(createSection);
 
-function addPost(timestamp,id, post, href , num,position=0, created='unknown') {
+		var createDivNumber = document.createElement('div');
+		createDivNumber.className = 'number';
+		createDivNumber.textContent = counter.toString();
+		createSection.appendChild(createDivNumber);
 
-	counter ++;
+		var createPosDiv = document.createElement('div');
+		createPosDiv.className = 'pos';
+		createSection.appendChild(createPosDiv);
 
-	this.num = num
-	this.timestamp = timestamp;
-	this.id = id;
-	this.position = position;
-	this.post = post;
-	this.createdBy = created;
-	this.originalPage = href;
+		var createUp = document.createElement('button');
+		createUp.className = 'up';
+		createUp.textContent = 'up';
+		createPosDiv.appendChild(createUp);
 
-	this.getMain = document.querySelector('main');
-	this.createSection = document.createElement('section');
-	this.getMain.appendChild(this.createSection);
+		var createPositon = document.createElement('div');
+		createPositon.className = 'position';
+		createPositon.textContent = position.toString();
+		createPosDiv.appendChild(createPositon);
 
-	this.createDivNumber = document.createElement('div');
-	this.createDivNumber.className = 'number';
-	this.createDivNumber.textContent = counter.toString();
-	this.createSection.appendChild(this.createDivNumber);
+		var createDown = document.createElement('button');
+		createDown.className = 'down';
+		createDown.textContent = 'down';
+		createPosDiv.appendChild(createDown);
 
-	this.createPosDiv = document.createElement('div');
-	this.createPosDiv.className = 'pos';
-	this.createSection.appendChild(this.createPosDiv);
+		var createPost = document.createElement('div');
+		createPost.className = 'post';
+		createSection.appendChild(createPost);
 
-	this.createUp = document.createElement('button');
-	this.createUp.className = 'up';
-	this.createUp.textContent = 'up';
-	this.createPosDiv.appendChild(this.createUp);
+		var createPostText = document.createElement('a');
+		createPostText.className = 'postText';
+		createPostText.href = originalPage;
+		createPostText.textContent = post;
+		createPost.appendChild(createPostText);
 
-	this.createPositon = document.createElement('div');
-	this.createPositon.className = 'position';
-	this.createPositon.textContent = this.position.toString();
-	this.createPosDiv.appendChild(this.createPositon);
+		var createArticle = document.createElement('article');
+		createArticle.className = 'submited';
+		createArticle.textContent = 'submited by ' + createdBy;
+		createPost.appendChild(createArticle);
 
-	this.createDown = document.createElement('button');
-	this.createDown.className = 'down';
-	this.createDown.textContent = 'down';
-	this.createPosDiv.appendChild(this.createDown);
+		var createModDiv = document.createElement('div');
+		createModDiv.className = 'mod';
+		createPost.appendChild(createModDiv);
 
-	this.createPost = document.createElement('div');
-	this.createPost.className = 'post';
-	this.createSection.appendChild(this.createPost);
+		var createModify = document.createElement('button');
+		createModify.className = 'modify';
+		createModify.textContent = 'modify';
+		createModDiv.appendChild(createModify);
 
-	this.createPostText = document.createElement('a');
-	this.createPostText.className = 'postText';
-	this.createPostText.href = this.originalPage;
-	this.createPostText.textContent = this.post;
-	this.createPost.appendChild(this.createPostText);
-
-	this.createArticle = document.createElement('article');
-	this.createArticle.className = 'submited';
-	this.createArticle.textContent = 'submited by ' + this.createdBy;
-	this.createPost.appendChild(this.createArticle);
-
-	this.createModDiv = document.createElement('div');
-	this.createModDiv.className = 'mod';
-	this.createPost.appendChild(this.createModDiv);
-
-	this.createModify = document.createElement('button');
-	this.createModify.className = 'modify';
-	this.createModify.textContent = 'modify';
-	this.createModDiv.appendChild(this.createModify);
-
-	this.createRemove = document.createElement('button');
-	this.createRemove.className = 'remove';
-	this.createRemove.textContent = 'remove';
-	this.createModDiv.appendChild(this.createRemove);
+		var createRemove = document.createElement('button');
+		createRemove.className = 'remove';
+		createRemove.textContent = 'remove';
+		createModDiv.appendChild(createRemove);
+	
 
 
 
-
-	this.createUp.addEventListener('click', function(){
+	createUp.addEventListener('click', function(){
 		
-		var url = 'https://time-radish.glitch.me/posts/'+this.id+'/upvote';
+		var url = 'https://time-radish.glitch.me/posts/'+id+'/upvote';
 		var xhrSend = new XMLHttpRequest();
 
 		xhrSend.open('PUT', url, true);
@@ -160,103 +160,45 @@ function addPost(timestamp,id, post, href , num,position=0, created='unknown') {
 		xhrSend.setRequestHeader('Accept', 'application/json')
 		xhrSend.send();
 
-
-//--------------------------------------------------------------------------------------------
-
-
 		xhrSend.onreadystatechange = function(){
-			if (xhrSend.readyState === XMLHttpRequest.DONE){
-			var url = 'https://time-radish.glitch.me/posts';
-			var xhr = new XMLHttpRequest();
-
-
-			xhr.open('GET', url, true);
-
-			xhr.setRequestHeader('Accept', 'application/json')
-
-			xhr.send('');
-
-			var list;
-
-			xhr.onreadystatechange = function(){
-			if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
-			  console.log(JSON.parse(xhr.response));
-			  list = JSON.parse(xhr.response);
-					this.createPositon.textContent = list.posts[this.num].score.toString()
-			  	}
-				}.bind(this)
+		if (xhrSend.readyState === XMLHttpRequest.DONE) {
+			getDataFromServer();
 			}
-		}.bind(this)
-
-
-//-----------------------------------------------------------------------------------------------------
-
-		
-		this.createUp.style.backgroundImage = "url(upvoted.png)";
-
-	}.bind(this))
-
-
-
-
-	this.createDown.addEventListener('click', function(){
-		var url = 'https://time-radish.glitch.me/posts/'+this.id+'/downvote';
-		var xhrSend = new XMLHttpRequest();
-
-		xhrSend.open('PUT', url, true);
-
-		xhrSend.setRequestHeader('Accept', 'application/json')
-		xhrSend.send();
-
-		var xhr = new XMLHttpRequest();
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-		xhrSend.onreadystatechange = function(){
-			if (xhrSend.readyState === XMLHttpRequest.DONE){
-			var url = 'https://time-radish.glitch.me/posts';
-			var xhr = new XMLHttpRequest();
-
-
-			xhr.open('GET', url, true);
-
-			xhr.setRequestHeader('Accept', 'application/json')
-
-			xhr.send('');
-
-			var list;
-
-			xhr.onreadystatechange = function(){
-			if (xhr.readyState === XMLHttpRequest.DONE && document.location.href ==='file:///C:/Greenfox/Szilardoo/Week8/weekly-project/reddit.html') {
-			  console.log(JSON.parse(xhr.response));
-			  list = JSON.parse(xhr.response);
-					this.createPositon.textContent = list.posts[this.num].score.toString()
-			  	}
-				}.bind(this)
-			}
-		}.bind(this)
-
-
-//------------------------------------------------------------------------------
-
-
-
-
-		this.createDown.style.backgroundImage = "url(downvoted.png)";
-	}.bind(this))
-
-
-
-
-	this.createRemove.addEventListener('click', function(){
-		this.fun = function (timestamp, id, post, href, num , position, created){
-			var addPosts = new addPost(timestamp, id, post, href, num , position, created);
 		}
-		getDataFromServer(this.fun);
-		var url = 'https://time-radish.glitch.me/posts/'+this.id;
+
+		createUp.style.backgroundImage = "url(upvoted.png)";
+
+	})
+
+
+
+
+	createDown.addEventListener('click', function(){
+		var url = 'https://time-radish.glitch.me/posts/'+id+'/downvote';
+		var xhrSend = new XMLHttpRequest();
+
+		xhrSend.open('PUT', url, true);
+
+		xhrSend.setRequestHeader('Accept', 'application/json')
+		xhrSend.send();
+
+
+		xhrSend.onreadystatechange = function(){
+		if (xhrSend.readyState === XMLHttpRequest.DONE) {
+			getDataFromServer();
+			}
+		}
+
+
+		createDown.style.backgroundImage = "url(downvoted.png)";
+	})
+
+
+
+
+	createRemove.addEventListener('click', function(){
+
+		var url = 'https://time-radish.glitch.me/posts/'+id;
 		var xhrSend = new XMLHttpRequest();
 
 		xhrSend.open('DELETE', url, true);
@@ -264,9 +206,12 @@ function addPost(timestamp,id, post, href , num,position=0, created='unknown') {
 		xhrSend.setRequestHeader('Accept', 'application/json')
 		xhrSend.send();
 
+		xhrSend.onreadystatechange = function(){
+		if (xhrSend.readyState === XMLHttpRequest.DONE) {
+			getDataFromServer();
+			}
+		}
 
-
-
-	}.bind(this))
+	})
 
 }
