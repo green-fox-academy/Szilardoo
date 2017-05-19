@@ -43,7 +43,7 @@ app.post('/posts', function get(req,res) {
 	const title = req.body.title;
 	const href = req.body.href;
 
-	conn.query('INSERT INTO posts ( title, href, score, owner) VALUES( ' + '"' + title +'"' + ', "' + href + '" , "0", "Unknown");'  ,function(err,rows){
+	conn.query('INSERT INTO posts ( title, href, score, owner) VALUES( ?, ?, "0", "Unknown");', [title,href] ,function(err,rows){
 
 		if(err){
 			console.log("PARA", err.message);
@@ -57,8 +57,6 @@ app.post('/posts', function get(req,res) {
 app.delete('/posts/:id', function get(req,res) {
 
 	var ownId = req.params.id;
-
-	console.log(ownId);
 
 	conn.query('DELETE FROM posts WHERE id = ?;', [ownId] ,function(err,rows){
 
@@ -74,7 +72,6 @@ app.delete('/posts/:id', function get(req,res) {
 app.put('/posts/:id/upvote', function get(req,res) {
 
 	var ownId = req.params.id;
-
 	var score = 0;
 
 	conn.query('SELECT score FROM posts WHERE id = ?;', [ownId], function(err, rows){
@@ -97,7 +94,6 @@ app.put('/posts/:id/upvote', function get(req,res) {
 app.put('/posts/:id/downvote', function get(req,res) {
 
 	var ownId = req.params.id;
-
 	var score = 0;
 
 	conn.query('SELECT score FROM posts WHERE id = ?;', [ownId], function(err, rows){
