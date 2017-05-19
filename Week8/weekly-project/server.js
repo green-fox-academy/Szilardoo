@@ -43,9 +43,6 @@ app.post('/posts', function get(req,res) {
 	const title = req.body.title;
 	const href = req.body.href;
 
-	console.log(title);
-	console.log(href);
-
 	conn.query('INSERT INTO posts ( title, href, score, owner) VALUES( ' + '"' + title +'"' + ', "' + href + '" , "0", "Unknown");'  ,function(err,rows){
 
 		if(err){
@@ -56,23 +53,74 @@ app.post('/posts', function get(req,res) {
 
 })
 
-app.post('/posts/:id/:vote', function get(req,res) {
 
-	const param = req.params.id;
-	const title = req.body.title;
-	const href = req.body.href;
+app.delete('/posts/:id', function get(req,res) {
 
-	console.log(title);
-	console.log(href);
+	var ownId = req.params.id;
 
-	conn.query('INSERT INTO posts ( title, href, score, owner) VALUES( ' + '"' + title +'"' + ', "' + href + '" , "0", "Unknown");'  ,function(err,rows){
+	console.log(ownId);
+
+	conn.query('DELETE FROM posts WHERE id = ?;', [ownId] ,function(err,rows){
 
 		if(err){
 			console.log("PARA", err.message);
 		}
-		res.status(200).send()
+		res.send()
 	})
 
 })
+
+
+app.put('/posts/:id/upvote', function get(req,res) {
+
+	var ownId = req.params.id;
+
+	var score = 0;
+
+	conn.query('SELECT score FROM posts WHERE id = ?;', [ownId], function(err, rows){
+		rows.forEach(row=> {
+			score = parseInt(row.score);
+		})
+		score += 1;
+
+		conn.query('UPDATE  posts SET score = ? WHERE id = ?;', [score, parseInt(ownId)] ,function(err,rows){
+
+			if(err){
+				console.log("PARA", err.message);
+			}
+			res.send()
+		})
+	});
+
+})
+
+app.put('/posts/:id/downvote', function get(req,res) {
+
+	var ownId = req.params.id;
+
+	var score = 0;
+
+	conn.query('SELECT score FROM posts WHERE id = ?;', [ownId], function(err, rows){
+		rows.forEach(row=> {
+			score = parseInt(row.score);
+		})
+		score -= 1;
+
+		conn.query('UPDATE  posts SET score = ? WHERE id = ?;', [score, parseInt(ownId)] ,function(err,rows){
+
+			if(err){
+				console.log("PARA", err.message);
+			}
+			res.send()
+		})
+	});
+
+	
+
+})
+
+
+
+
 
 app.listen(3000);

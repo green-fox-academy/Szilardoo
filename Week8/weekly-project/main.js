@@ -122,7 +122,7 @@ function createAll(serveData,main,counter){
 
 	createUp.addEventListener('click', function(){
 		
-		var url = 'https://time-radish.glitch.me/posts/'+id+'/upvote';
+		var url = 'http://localhost:3000/posts/'+id+'/upvote';
 		var xhrSend = new XMLHttpRequest();
 
 		xhrSend.open('PUT', url, true);
@@ -144,7 +144,7 @@ function createAll(serveData,main,counter){
 
 
 	createDown.addEventListener('click', function(){
-		var url = 'https://time-radish.glitch.me/posts/'+id+'/downvote';
+		var url = 'http://localhost:3000/posts/'+id+'/downvote';
 		var xhrSend = new XMLHttpRequest();
 
 		xhrSend.open('PUT', url, true);
@@ -168,7 +168,7 @@ function createAll(serveData,main,counter){
 
 	createRemove.addEventListener('click', function(){
 
-		var url = 'https://time-radish.glitch.me/posts/'+id;
+		var url = 'http://localhost:3000/posts/'+id;
 		var xhrSend = new XMLHttpRequest();
 
 		xhrSend.open('DELETE', url, true);
