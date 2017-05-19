@@ -4,7 +4,7 @@ postToServer();
 
 
 function postToServer(){
-	var url = 'https://time-radish.glitch.me/posts';
+	var url = 'http://localhost:3000/posts';
 	var xhrSend = new XMLHttpRequest();
 
 	xhrSend.open('POST', url, true);

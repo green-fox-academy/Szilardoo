@@ -6,13 +6,14 @@ getDataFromServer();
 
 function getDataFromServer(){
 
-	var url = 'https://time-radish.glitch.me/posts';
+	//var url = 'https://time-radish.glitch.me/posts';
+	var url = 'http://localhost:3000/posts';
 	var xhr = new XMLHttpRequest();
 
 
 	xhr.open('GET', url, true);
 
-	xhr.setRequestHeader('Accept', 'application/json')
+	xhr.setRequestHeader('Accept', 'application/json');
 
 	xhr.send('');
 
@@ -20,9 +21,15 @@ function getDataFromServer(){
 
 	xhr.onreadystatechange = function(){
 	if (xhr.readyState === XMLHttpRequest.DONE) {
-	  console.log(JSON.parse(xhr.response));
+
+	 console.log(JSON.parse(xhr.response));
 	  list = JSON.parse(xhr.response);
 	  		addPost(list);
+		
+
+
+
+
 		}
 	}
 }
@@ -48,7 +55,6 @@ function createAll(serveData,main,counter){
 
 		var getMain = main;
 
-		var timestamp = serveData.timestamp;
 		var id = serveData.id;
 		var position = serveData.score;
 		var post = serveData.title;
