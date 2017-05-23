@@ -1,3 +1,12 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	height: 100%;
+}
+
 body {
 	display: flex;
 	justify-content: center;
@@ -8,7 +17,7 @@ body {
 	align-items: center;
 	display: flex;
 	width: 70%;
-	height: 500px;
+	height: 80%;
 	flex-direction: column;
 }
 
@@ -19,11 +28,21 @@ body {
 }
 
 .play-audio{
+	display: flex;
+	justify-content: flex-end;
 	width: 100%
+}
+.next {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+	height: 50px;
+	background: linear-gradient(to bottom, #7d7e7d 0%,#000000 69%,#0e0e0e 100%);
 }
 
 audio {
-	width: 100%;
+	width: 80%;
 }
 
 audio::-webkit-media-controls-panel {
@@ -34,4 +53,54 @@ audio::-webkit-media-controls-panel {
 
 audio::-webkit-media-controls-volume-slider {
     -webkit-filter: hue-rotate(143deg) saturate(10);    
+}
+
+.header {
+	display: flex;
+	width: 50%;
+	background-color: #dddddd;
+	height: 100%
+}
+
+.header-playlist {
+	box-sizing: border-box;
+	padding: 10%;
+	width: 70%;
+	height: 40%;
+}
+
+.Playlist {
+	display: flex;
+	padding-top: 20%;
+	justify-content: space-between;
+	font-size: 26px;
+}
+
+.music-pic {
+	width: 70%;
+	height: 40%;
+}
+
+.musicp {
+	height: 90%;
+	width: 90%;
+	margin-top: 20%;
+}
+
+.logo {
+	width: 80%;
+	height: 100%;
+}
+
+.add {
+	background: none;
+	border: 0;
+	font-size: 26px;
+}
+
+.prew {
+	background: url(left.png) center no-repeat;
+	background-size: 30%
+	text-indent: -10000000px;
+	width: 100px;
 }

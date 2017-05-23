@@ -7,19 +7,35 @@
 </head>
 <body>
 
-	<div class="main">
-		<div class="musics">
-			<div class="folder">
+	<article class="main">
+		<section class="musics">
+			<section class="header">
+				<div class="header-playlist">
+					<img class="logo" src="title.png">
+					<div class="Playlist">
+						Playlist
+						<button class="add">+</button>
+					</div>
+				</div>
+			<div class="music-pic">
+				<img class="musicp" src="music_pic.jpg">
 			</div>
-			<div class = "music-name">
-			</div>
-		</div>
+			</section>
+		</section>
+			<section class = "music-name">
+			</section>
+		</section>
 		<div class="play-audio">
+			<div class="next">
+				<button class="prew">p</button>
+				<button class="play-start">s</button>
+				<button class="next-button">n</button>
+			</div>
 			<audio controls>
 				<source src="Organoid_-_09_-_Purple_Drift.mp3" type="audio/mpeg">
 			</audio>
 		</div>
-	</div>
-  <script type="text/javascript" src="index.js"></script>
+	</article>
+  <script type="text/javascript" src="frontend.js"></script>
 </body>
 </html>
