@@ -80,15 +80,10 @@ audio {
 
 .playlist-elements {
 	display: flex;
-	background-color: #EAEAEA;
 	height: 20%;
 	align-items: center;
 	padding-left: 20px;
 	font-size: 18px;
-}
-
-.playlist-elements:hover {
-	background-color: #abe7e5;
 }
 
 .playlists{
@@ -96,11 +91,19 @@ audio {
 	overflow-y: scroll;
 }
 
+.playlist-elements:nth-child(odd){
+	background-color: #EAEAEA;
+}
+
+.playlist-elements:hover {
+	background-color: #abe7e5;
+}
+
 ::-webkit-scrollbar {
     width: 3px;
 }
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgb(0,0,0,);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0, 0.3);
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 8px;

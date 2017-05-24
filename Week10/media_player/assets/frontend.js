@@ -18,31 +18,28 @@ playButton.addEventListener('click', ()=>{
 
 }, false);
 
-getPlaylists();
+var getPlaylistsDiv = document.querySelector('.playlists');
 
-function getPlaylists(){
+var communicate = new serverCommunication;
 
-	var url = 'http://localhost:3000/playlists';
-	var xhr = new XMLHttpRequest();
+communicate.getPlaylists(drawPlaylists, getPlaylistsDiv);
 
 
-	xhr.open('GET', url, true);
+//-------------------------------------------------------------------
 
-	xhr.setRequestHeader('Accept', 'application/json');
+function drawPlaylists(playlists, div){
 
-	xhr.send('');
-
-	var list;
-
-	xhr.onreadystatechange = function(){
-	if (xhr.readyState === XMLHttpRequest.DONE) {
-	  list = JSON.parse(xhr.response);
-	  console.log(list);
-		}
+	for(let i = 0; i < playlists.length; i++){
+		var newPlaylist = document.createElement('div');
+		newPlaylist.className = 'playlist-elements';
+		newPlaylist.textContent = playlists[i].title;
+		div.appendChild(newPlaylist);
 	}
 }
 
-function getTracks(){
+
+
+/*function getTracks(){
 
 	var url = 'http://localhost:3000/playlist-track';
 	var xhr = new XMLHttpRequest();
@@ -62,5 +59,4 @@ function getTracks(){
 	  console.log(list);
 		}
 	}
-}
-
+}*/
