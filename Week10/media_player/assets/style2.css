@@ -291,5 +291,5 @@ audio {
 }
 
 .active {
-	background-color: #abe7e5;
+	background-color: #abe7e5 !important;
 }

@@ -38,8 +38,10 @@ class serverCommunication{
 
 		xhrSend.onreadystatechange = function(){
 		if (xhrSend.readyState === XMLHttpRequest.DONE) {
-			cb(cback, holderDiv)
-				}
+			cb(cback, holderDiv, url)
 			}
+		}
 	}
+
+
 }

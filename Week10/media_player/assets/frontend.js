@@ -7,6 +7,7 @@ class main {
 		this.media = document.querySelector('audio');
 		this.playButton = document.querySelector('.play-pause');
 		this.musicTitle = document.querySelector('.music-name');
+		this.deleteButton = document.querySelector('.delete');
 
 		this.drawThings = new draw;
 
@@ -63,8 +64,10 @@ class main {
 		});
 
 		this.addButton.addEventListener('click', function(){
-			this.communicate.postToPlaylists(this.communicate.getPlaylists,this.drawThings.drawPlayLists, this.getPlaylistsDiv, this.title);
+			this.communicate.postToPlaylists(this.communicate.getDataFromServer, this.drawThings.drawPlayLists, this.getPlaylistsDiv, this.title);
 		}.bind(this))
+
+
 	}
 }
 

@@ -64,6 +64,19 @@ app.post('/playlists', function get(req,res) {
 
 })
 
+app.delete('/playlists/:id', function get(req,res) {
+
+	var ownId = req.params.id;
+
+	conn.query('DELETE FROM playlists WHERE id = ?;', [ownId] ,function(err,rows){
+
+		if(err){
+			console.log("PARA", err.message);
+		}
+		res.send()
+	})
+})
+
 
 
 app.listen(3000);

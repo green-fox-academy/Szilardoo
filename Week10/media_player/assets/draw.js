@@ -1,11 +1,6 @@
 
 class draw{
 
-	constructor(){
-		console.log(this);
-	}
-
-
 	drawPlayLists(playlists, data){
 		console.log(this);
 
@@ -13,8 +8,7 @@ class draw{
 
 		for(let i = 0; i < playlists.length; i++){
 
-			var newPlaylist = document.createElement('div');
-			newPlaylist.className = '';
+			let newPlaylist = document.createElement('div');
 			newPlaylist.className = 'playlist-elements';
 			if(playlists[i].system === 0){
 				newPlaylist.innerHTML = playlists[i].title + '<button class="delete">X</button>';
@@ -23,9 +17,11 @@ class draw{
 			}
 
 			newPlaylist.addEventListener('click', function(){
+
+				this.active(newPlaylist);
+
 				console.log(playlists[i].id);
 				console.log('That part is not ready yet');
-				this.active(newPlaylist);
 			}.bind(this))
 
 			data.appendChild(newPlaylist);	
@@ -34,7 +30,11 @@ class draw{
 	}
 
 	active(element){
-		element.className = "active";
+		this.playlists = document.querySelectorAll('.playlist-elements');
+		for(let i = 0; i < this.playlists.length; i++){
+			this.playlists[i].classList.remove('active');
+		}
+		element.className = "active playlist-elements";
 	}
 
 	drawTracks(tracks, object){
