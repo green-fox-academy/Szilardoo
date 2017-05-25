@@ -289,3 +289,7 @@ audio {
 	left: 45%;
 	top: 70%;
 }
+
+.active {
+	background-color: #abe7e5;
+}

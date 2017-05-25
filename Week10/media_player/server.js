@@ -45,11 +45,11 @@ app.get('/playlist-track', function get(req,res) {
 	})
 })
 
-app.get('/playlist-track/:id', function get(req,res) {
+/*app.get('/playlist-track/:id', function get(req,res) {
 	var id = req.params.id;
 
 	res.send(tracks);
-})
+})*/
 
 app.post('/playlists', function get(req,res) {
 	const title = req.body.title;

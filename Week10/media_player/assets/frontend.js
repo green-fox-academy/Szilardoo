@@ -1,45 +1,71 @@
 'use strict';
 
-var media = document.querySelector('audio');
+class main {
+	constructor(){
+		this.getPlaylistsDiv = document.querySelector('.playlists');
+		this.getTracksDiv = document.querySelector('.play-musics');
+		this.media = document.querySelector('audio');
+		this.playButton = document.querySelector('.play-pause');
+		this.musicTitle = document.querySelector('.music-name');
 
-var playButton = document.querySelector('.play-pause');
+		this.drawThings = new draw;
 
-playButton.addEventListener('click', ()=>{
-  if(media.paused){
-    media.play();
-    playButton.setAttribute('style', 'background: url(assets/pause.svg) center no-repeat;');
-  }else{
-    media.pause();
-    playButton.setAttribute('style', 'background: url(assets/play.svg) center no-repeat;');
-  }
-
-}, false);
-
-const getPlaylistsDiv = document.querySelector('.playlists');
-const getTracksDiv = document.querySelector('.play-musics')
+		this.communicate = new serverCommunication;
+		this.tracks = new serverCommunication;
 
 
-const drawThings = new draw;
+		this.addButton = document.querySelector('.add-new-playlist');
+		this.title = document.querySelector(".add-playlist");
 
-const communicate = new serverCommunication;
+		this.addPlaylistBlock = document.querySelector('.invisible');
+		this.addPlaylistButton = document.querySelector('.add');
 
-communicate.getPlaylists(drawThings.drawPlayLists, getPlaylistsDiv);
-communicate.getTracks(drawThings.drawTracks, getTracksDiv, media);
+		this.events();
+		this.drawingPlaylist();
+		this.drawingTracks();
 
-var subButton = document.querySelector('.add-new-playlist');
-			subButton.addEventListener('click', function(){
-communicate.postToPlaylists(communicate.getPlaylists,drawThings.drawPlayLists, getPlaylistsDiv );
-})
-
-
-
-var addPlaylistBlock = document.querySelector('.invisible');
-var addPlaylistButton = document.querySelector('.add');
-
-addPlaylistButton.addEventListener('click', ()=>{
-	if (addPlaylistBlock.style.display !== "inline"){
-		addPlaylistBlock.style.display= 'inline';
-	}else{
-		addPlaylistBlock.style.display= 'none';
 	}
-})
+
+	drawingPlaylist(){
+		this.urlPlaylist = 'http://localhost:3000/playlists'
+		this.communicate.getDataFromServer(this.drawThings.drawPlayLists.bind(this.drawThings), this.getPlaylistsDiv, this.urlPlaylist);
+	}
+
+	drawingTracks(){
+		this.trackUrl = 'http://localhost:3000/playlist-track';
+
+		this.drawTrackObject = {
+			div :this.getTracksDiv, 
+			media: this.media, 
+			musicTitle: this.musicTitle
+		}
+
+		this.tracks.getDataFromServer(this.drawThings.drawTracks, this.drawTrackObject, this.trackUrl);
+	}
+
+	events(){
+		this.playButton.addEventListener('click', ()=>{
+			if(this.media.paused){
+				this.media.play();
+				this.playButton.setAttribute('style', 'background: url(assets/pause.svg) center no-repeat;');
+			}else{
+				this.media.pause();
+				this.playButton.setAttribute('style', 'background: url(assets/play.svg) center no-repeat;');
+			}
+		}, false);
+
+		this.addPlaylistButton.addEventListener('click', ()=>{
+			if (this.addPlaylistBlock.style.display !== "inline"){
+				this.addPlaylistBlock.style.display= 'inline';
+			}else{
+				this.addPlaylistBlock.style.display= 'none';
+			}
+		});
+
+		this.addButton.addEventListener('click', function(){
+			this.communicate.postToPlaylists(this.communicate.getPlaylists,this.drawThings.drawPlayLists, this.getPlaylistsDiv, this.title);
+		}.bind(this))
+	}
+}
+
+var startMain = new main;
