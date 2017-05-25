@@ -7,6 +7,10 @@
 </head>
 <body>
 	<article>
+		<div class="invisible">
+			<input type="text" name="add" class="add-playlist" placeholder="New Playlist Name">
+			<button class="add-new-playlist">Add</button>
+		</div>
 		<section class="ui">
 			<section class="lists">
 				<div class="header">
@@ -23,7 +27,6 @@
 				</div>
 				<div class="playlists">
 					<div class="playlist-elements">All tracks</div>
-					<div class="playlist-elements">Favorites</div>
 				</div>
 			</section>
 			<section class="music">
@@ -35,7 +38,6 @@
 					</div>
 				</div>
 				<div class="play-musics">
-					<div class="track"><span class=number>1</span>First music</div>
 				</div>
 			</section>
 		</section>
@@ -45,13 +47,13 @@
 				<button class="play-pause">s</button>
 				<button class="next-button">n</button>
 			</div>
-			<audio controls>
-				<source src="assets/Organoid_-_09_-_Purple_Drift.mp3" type="audio/mpeg">
-			</audio>
+			<audio controls src="assets/Organoid_-_09_-_Purple_Drift.mp3"
+			type="audio/mpeg"
+        autoplay> </audio>
 		</section>
 	</article>
+	<script type="text/javascript" src="assets/draw.js"></script>
 	<script type="text/javascript" src="assets/communicateWithServer.js"></script>
-  <script type="text/javascript" src="assets/frontend.js"></script>
-  <script type="text/javascript" src="assets/frontend.js"></script>
+  	<script type="text/javascript" src="assets/frontend.js"></script>
 </body>
 </html>

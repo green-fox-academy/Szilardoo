@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mysql = require('mysql');
 const cors = require('cors')
 
 
@@ -9,31 +10,60 @@ app.use(cors())
 
 app.use(bodyParser.json());
 
+var conn = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "music_player"
+});
+
+const selectPlaylists = "SELECT * FROM playlists;";
+const selectTracks = "SELECT * FROM tracks;";
+
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index2.html');
 	app.use('/assets', express.static('assets'));
 })
 
 app.get('/playlists', function get(req,res) {
+	conn.query(selectPlaylists ,function(err,rows){
 
-	var playlist = [
-		{ "id": 1, "title": "Favorites", "system": 1},
-		{ "id": 2, "title": "Music for programming", "system": 0},
-		{ "id": 3, "title": "Driving", "system": 0},
-		{ "id": 5, "title": "Fox house", "system": 0},
-	]
-
-	res.send(playlist);
+		if(err){
+			console.log("PARA", err.message);
+		}
+		res.send(rows);
+	})
 })
 
 app.get('/playlist-track', function get(req,res) {
+	conn.query(selectTracks ,function(err,rows){
 
-	var tracks = [
-	{ "id": 21, "title": "Halahula", "artist": "Untitled artist", "duration": 545, "path": "c:/music/halahula.mp3" },
-	{ "id": 412, "title": "No sleep till Brooklyn", "artist": "Beastie Boys", "duration": 312.12, "path": "c:/music/beastie boys/No sleep till Brooklyn.mp3" }
-	]
+		if(err){
+			console.log("PARA", err.message);
+		}
+		res.send(rows);
+	})
+})
+
+app.get('/playlist-track/:id', function get(req,res) {
+	var id = req.params.id;
 
 	res.send(tracks);
 })
+
+app.post('/playlists', function get(req,res) {
+	const title = req.body.title;
+
+	conn.query('INSERT INTO playlists ( title, system) VALUES( ?, "0");', [title] ,function(err,rows){
+
+		if(err){
+			console.log("PARA", err.message);
+		}
+		res.status(200).send()
+	})
+
+})
+
+
 
 app.listen(3000);

@@ -5,58 +5,41 @@ var media = document.querySelector('audio');
 var playButton = document.querySelector('.play-pause');
 
 playButton.addEventListener('click', ()=>{
-  if(media.paused)
-  {
+  if(media.paused){
     media.play();
     playButton.setAttribute('style', 'background: url(assets/pause.svg) center no-repeat;');
-  }
-  else
-  {
+  }else{
     media.pause();
     playButton.setAttribute('style', 'background: url(assets/play.svg) center no-repeat;');
   }
 
 }, false);
 
-var getPlaylistsDiv = document.querySelector('.playlists');
-
-var communicate = new serverCommunication;
-
-communicate.getPlaylists(drawPlaylists, getPlaylistsDiv);
+const getPlaylistsDiv = document.querySelector('.playlists');
+const getTracksDiv = document.querySelector('.play-musics')
 
 
-//-------------------------------------------------------------------
+const drawThings = new draw;
 
-function drawPlaylists(playlists, div){
+const communicate = new serverCommunication;
 
-	for(let i = 0; i < playlists.length; i++){
-		var newPlaylist = document.createElement('div');
-		newPlaylist.className = 'playlist-elements';
-		newPlaylist.textContent = playlists[i].title;
-		div.appendChild(newPlaylist);
+communicate.getPlaylists(drawThings.drawPlayLists, getPlaylistsDiv);
+communicate.getTracks(drawThings.drawTracks, getTracksDiv, media);
+
+var subButton = document.querySelector('.add-new-playlist');
+			subButton.addEventListener('click', function(){
+communicate.postToPlaylists(communicate.getPlaylists,drawThings.drawPlayLists, getPlaylistsDiv );
+})
+
+
+
+var addPlaylistBlock = document.querySelector('.invisible');
+var addPlaylistButton = document.querySelector('.add');
+
+addPlaylistButton.addEventListener('click', ()=>{
+	if (addPlaylistBlock.style.display !== "inline"){
+		addPlaylistBlock.style.display= 'inline';
+	}else{
+		addPlaylistBlock.style.display= 'none';
 	}
-}
-
-
-
-/*function getTracks(){
-
-	var url = 'http://localhost:3000/playlist-track';
-	var xhr = new XMLHttpRequest();
-
-
-	xhr.open('GET', url, true);
-
-	xhr.setRequestHeader('Accept', 'application/json');
-
-	xhr.send('');
-
-	var list;
-
-	xhr.onreadystatechange = function(){
-	if (xhr.readyState === XMLHttpRequest.DONE) {
-	  list = JSON.parse(xhr.response);
-	  console.log(list);
-		}
-	}
-}*/
+})

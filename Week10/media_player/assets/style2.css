@@ -1,6 +1,7 @@
 * {
 	padding: 0;
 	margin: 0;
+	font-family: Arial;
 }
 
 body, html {
@@ -9,6 +10,13 @@ body, html {
 
 button:hover {
 	cursor: pointer;
+}
+
+button {
+	background: none;
+	border: 0;
+	font-size: 20px;
+	color: #C9c9c9;
 }
 
 body {
@@ -25,6 +33,7 @@ article {
 	height: 80%;
 	flex-direction: column;
 	box-shadow: 5px 5px 5px;
+
 }
 
 .ui {
@@ -84,6 +93,7 @@ audio {
 	align-items: center;
 	padding-left: 20px;
 	font-size: 18px;
+	justify-content: space-between;
 }
 
 .playlists{
@@ -118,14 +128,19 @@ audio {
 .playlist-text{
 	display: flex;
 	justify-content: space-around;
-	padding-top: 10%;
-	font-size: 36px;
+	padding-top: 15%;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 .header {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
+}
+
+.delete {
+	margin-right: 10px;
 }
 
 .left {
@@ -146,6 +161,7 @@ audio {
 	font-size: 40px;
 	border: 0;
 	color: #4c4f52;
+	margin-top: -5px;
 }
 
 .prew {
@@ -165,7 +181,7 @@ audio {
 }
 
 .play-pause {
-	background: url(play.svg) center no-repeat;
+	background: url(pause.svg) center no-repeat;
 	background-size: 60%;
 	text-indent: -10000000px;
 	width: 20%;
@@ -175,6 +191,10 @@ audio {
 .music {
 	height: 100%;
 	display: flex;
+}
+
+.track:nth-child(odd){
+	background-color: #EAEAEA;
 }
 
 .music-header {
@@ -220,7 +240,6 @@ audio {
 
 .track {
 	display: flex;
-	background-color: #EAEAEA;
 	height: 15%;
 	align-items: center;
 	padding-left: 20px;
@@ -234,4 +253,39 @@ audio {
 .number {
 	color: #C9c9c9;
 	padding-right: 20px;
+}
+
+.length {
+	width: 100%;
+	padding-right: 15px;
+	display: flex;
+	color: #C8c8c8;
+	justify-content: flex-end;
+}
+
+.invisible {
+	position: absolute;
+	left: 35%;
+	top: 40%;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 10px;
+	display: none;
+	width: 30%;
+	height: 20%;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.add-playlist {
+	width: 50%;
+	height: 20%;
+	position: absolute;
+	left: 25%;
+	top: 40%;
+}
+
+.add-new-playlist{
+	position: absolute;
+	left: 45%;
+	top: 70%;
 }
