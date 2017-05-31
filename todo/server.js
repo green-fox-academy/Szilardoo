@@ -34,4 +34,32 @@ app.get('/todos', function get(req,res) {
 	})
 })
 
+app.post('/todos', function get(req,res) {
+	console.log(req.body);
+	const title = req.body.text;
+
+	console.log(title);
+
+	conn.query('INSERT INTO todo (text, completed) VALUES( ?, "false");', [title] ,function(err,rows){
+
+		if(err){
+			console.log("PARA", err.message);
+		}
+		res.send();
+	})
+})
+
+app.delete('/todos/:id', function get(req,res) {
+
+	var id = req.params.id;
+
+	conn.query('DELETE FROM todo WHERE id = ?;', [id] ,function(err,rows){
+
+		if(err){
+			console.log("PARA", err.message);
+		}
+		res.send()
+	})
+})
+
 app.listen(3000);
