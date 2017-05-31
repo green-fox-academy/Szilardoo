@@ -1,0 +1,92 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body, html {
+	width: 100%;
+	background-color: #50e3c2
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+article {
+	background-color: #f7f7f7;
+	width: 40%;
+	margin: 50px;
+	min-height: 550px;
+	min-width: 250px;
+	height: auto;
+}
+
+.heading {
+	font-family: Lato, sans-serif;
+	font-weight: lighter;
+	font-size: 64px;
+	width: 100%;
+	color: #ABABAB;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+p {
+	margin: 40px;
+}
+
+.input {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 25px;
+}
+
+.add-text {
+	font-size: 22px;
+	color: rgba(0,0,0,0.7);
+	height: 40px;
+	width: 65%
+}
+
+.add {
+	font-family: Lato, sans-serif;
+	font-size: 22px;
+	color: #ffffff;
+	background-color: #DF69E8;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 0;
+}
+
+.todo-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+	font-family: Lato, sans-serif;
+	padding: 5px 60px;
+	font-size: 24px;
+	line-height: 2.2;
+	color: #ababab;
+}
+
+.delete {
+	background: url(delete.svg) center no-repeat;
+	background-size: 32px;
+	text-indent: -10000000px;
+	width: 30px;
+	height: 30px;
+	border: 0;
+}
+
+.done {
+	position: relative;
+	top: 7px;
+	height: 20px;
+	width: 20px;
+}
