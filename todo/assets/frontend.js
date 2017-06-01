@@ -3,12 +3,12 @@ class main{
 		this.communication = new serverCommunication;
 
 		this.getUrl = 'http://localhost:3000/todos';
-		this.communication.getData(this.getUrl, this.drawTodos.bind(this), this.deleteTodo.bind(this));
+		this.communication.getData(this.getUrl, this.drawTodos.bind(this), this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
 		this.addItem();
 	}
 
 
-	drawTodos(data, cbDelete){
+	drawTodos(data, cbDelete, completed){
 		const getMainContainer = document.querySelector('.things-to-do');
 		
 		getMainContainer.innerHTML = '';
@@ -24,8 +24,13 @@ class main{
 			const checkBox = document.createElement('input');
 			checkBox.className = "done";
 			checkBox.type = "checkbox";
+
+			if(data[i].completed === 'true'){
+				elementDiv.style.color = '#cecece';
+				checkBox.checked = true;
+				checkBox.disabled = true;
+			}
 			
-			console.log(data[i].id);
 			elementDiv.textContent = data[i].text;
 			getMainContainer.appendChild(elementDiv);
 			propertiesDiv.appendChild(deleteButton);
@@ -34,11 +39,19 @@ class main{
 
 
 			deleteButton.addEventListener('click', function(){
-				
 				cbDelete(data[i].id);
-			
-			}.bind(this))
+			})
+
+			checkBox.addEventListener('change', function(){
+				completed(data[i].id);
+			});
 		}
+	}
+
+	setItemCompleted(id){
+		const doneUrl = this.getUrl + '/' + id;
+
+		this.communication.putData(this.getUrl ,doneUrl, this.drawTodos, this.communication.getData, this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
 	}
 
 	addItem(){
@@ -47,15 +60,14 @@ class main{
 		addButton.addEventListener('click', function(){
 			const addInput = document.querySelector('.add-text');
 			const value = addInput.value;
-			this.communication.postData(this.getUrl, this.drawTodos, value, this.communication.getData, this.deleteTodo.bind(this));
+			this.communication.postData(this.getUrl, this.drawTodos, value, this.communication.getData, this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
 		}.bind(this))
 	}
 
 	deleteTodo(id){
 		const deleteUrl = this.getUrl + '/' + id;
 
-		this.communication.deleteData(this.getUrl ,deleteUrl, this.drawTodos, this.communication.getData, this.deleteTodo.bind(this));
-		console.log(id);
+		this.communication.deleteData(this.getUrl ,deleteUrl, this.drawTodos, this.communication.getData, this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
 	}
 
 }
