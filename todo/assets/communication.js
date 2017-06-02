@@ -1,73 +1,29 @@
-class serverCommunication{
-	getData(url, callBack, cbDelete, completed){
-		const xhr = new XMLHttpRequest();
+'use strict';
 
-		xhr.open('GET', url, true);
+class serverCommunication {
 
-		xhr.send('');
+	ajax(url, method, callback, data) {
+		var xhr = new XMLHttpRequest();
 
-		xhr.onreadystatechange = function(){
-		if (xhr.readyState === XMLHttpRequest.DONE) {
-			const list = JSON.parse(xhr.response);
-			console.log(list);
-			callBack(list, cbDelete, completed);
-			}
+		xhr.open(method, url, true);
+		if( data ) {
+			xhr.setRequestHeader('Content-type', 'application/json');
 		}
-	}
-
-	postData(url, callBack, value, cb, cbDelete, completed){
-		const xhr = new XMLHttpRequest();
-
-		xhr.open('POST', url, true);
-
-		xhr.setRequestHeader('Content-Type', 'application/json');
-
-		console.log(value);
-
-		xhr.send(JSON.stringify({
-			"text": value
-		}));
-
-		xhr.onreadystatechange = function(){
-		if (xhr.readyState === XMLHttpRequest.DONE) {
-			cb(url, callBack, cbDelete, completed);
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState === XMLHttpRequest.DONE) {
+				if(xhr.status === 200) {
+					if(method === 'GET') {
+						var rsp = JSON.parse(xhr.response);
+						callback(rsp);
+					}else{
+					callback();
+					}
+				} else {
+					new Error('API PANIC!!!');
+					console.log(xhr.status);
+				}
 			}
-		}
-	}
-
-	deleteData(url, deleteUrl, callBack, cb, cbDelete, completed){
-		const xhr = new XMLHttpRequest();
-
-		xhr.open('DELETE', deleteUrl, true);
-
-		xhr.setRequestHeader('Accept', 'application/json');
-		xhr.setRequestHeader('Content-Type', 'application/json');
-
-		xhr.send();
-
-		xhr.onreadystatechange = function(){
-		if (xhr.readyState === XMLHttpRequest.DONE) {
-			cb(url, callBack, cbDelete, completed);
-			}
-		}
-	}
-
-	putData(url, putUrl, callBack, cb, cbDelete, completed){
-		const xhr = new XMLHttpRequest();
-
-		xhr.open('PUT', putUrl, true);
-
-		console.log(putUrl);
-
-		xhr.setRequestHeader('Accept', 'application/json');
-		xhr.setRequestHeader('Content-Type', 'application/json');
-
-		xhr.send();
-
-		xhr.onreadystatechange = function(){
-		if (xhr.readyState === XMLHttpRequest.DONE) {
-			cb(url, callBack, cbDelete, completed);
-			}
-		}
+		};
+		xhr.send(JSON.stringify(data));
 	}
 }

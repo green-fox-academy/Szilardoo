@@ -1,14 +1,18 @@
+'use strict';
+
 class main{
 	constructor(){
 		this.communication = new serverCommunication;
-
-		this.getUrl = 'http://localhost:3000/todos';
-		this.communication.getData(this.getUrl, this.drawTodos.bind(this), this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
 		this.addItem();
+		this.getDataAndDrawElements()
 	}
 
+	getDataAndDrawElements(){
+		this.getUrl = 'http://localhost:3000/todos';
+		this.communication.ajax(this.getUrl, 'GET',this.drawTodos.bind(this));
+	}
 
-	drawTodos(data, cbDelete, completed){
+	drawTodos(data){
 		const getMainContainer = document.querySelector('.things-to-do');
 		
 		getMainContainer.innerHTML = '';
@@ -39,20 +43,16 @@ class main{
 
 
 			deleteButton.addEventListener('click', function(){
-				cbDelete(data[i].id);
-			})
+				this.deleteElement(data[i].id);
+			}.bind(this))
 
 			checkBox.addEventListener('change', function(){
-				completed(data[i].id);
-			});
+				this.setElementCompleted(data[i].id);
+			}.bind(this));
 		}
 	}
 
-	setItemCompleted(id){
-		const doneUrl = this.getUrl + '/' + id;
 
-		this.communication.putData(this.getUrl ,doneUrl, this.drawTodos, this.communication.getData, this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
-	}
 
 	addItem(){
 		const addButton = document.querySelector('.add'); 
@@ -60,14 +60,22 @@ class main{
 		addButton.addEventListener('click', function(){
 			const addInput = document.querySelector('.add-text');
 			const value = addInput.value;
-			this.communication.postData(this.getUrl, this.drawTodos, value, this.communication.getData, this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
+			const postData = {
+				"text": value
+			}
+			this.communication.ajax(this.getUrl, 'POST',this.getDataAndDrawElements.bind(this), postData);
 		}.bind(this))
 	}
 
-	deleteTodo(id){
+	setElementCompleted(id){
+		const doneUrl = this.getUrl + '/' + id;
+		this.communication.ajax(doneUrl, 'PUT',this.getDataAndDrawElements.bind(this));
+	}
+
+	deleteElement(id){
 		const deleteUrl = this.getUrl + '/' + id;
 
-		this.communication.deleteData(this.getUrl ,deleteUrl, this.drawTodos, this.communication.getData, this.deleteTodo.bind(this), this.setItemCompleted.bind(this));
+		this.communication.ajax(deleteUrl, 'DELETE',this.getDataAndDrawElements.bind(this));
 	}
 
 }
