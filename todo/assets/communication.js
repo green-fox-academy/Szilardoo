@@ -12,12 +12,8 @@ class serverCommunication {
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState === XMLHttpRequest.DONE) {
 				if(xhr.status === 200) {
-					if(method === 'GET') {
-						var rsp = JSON.parse(xhr.response);
-						callback(rsp);
-					}else{
-					callback();
-					}
+					var rsp = JSON.parse(xhr.response);
+					callback(rsp);
 				} else {
 					new Error('API PANIC!!!');
 					console.log(xhr.status);

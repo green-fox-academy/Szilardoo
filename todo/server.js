@@ -29,8 +29,12 @@ app.get('/todos', function get(req,res) {
 
 		if(err){
 			console.log("PARA", err.message);
+			res.send({
+				"error": err.message
+			});
+		}else{
+			res.send(rows);
 		}
-		res.send(rows);
 	})
 })
 
@@ -41,8 +45,12 @@ app.post('/todos', function get(req,res) {
 
 		if(err){
 			console.log("PARA", err.message);
+			res.send({
+				"error": err.message
+			});
+		}else{
+			res.send({"success": true})
 		}
-		res.send();
 	})
 })
 
@@ -54,8 +62,12 @@ app.delete('/todos/:id', function get(req,res) {
 
 		if(err){
 			console.log("PARA", err.message);
+			res.send({
+				"error": err.message
+			});
+		}else{
+			res.send({"success": true})
 		}
-		res.send()
 	})
 })
 
@@ -67,10 +79,14 @@ app.put('/todos/:id', function get(req,res) {
 
 		conn.query('UPDATE todo SET completed = ? WHERE id = ?;', [done, parseInt(id)] ,function(err,rows){
 
-			if(err){
-				console.log("PARA", err.message);
-			}
-			res.send()
+		if(err){
+			console.log("PARA", err.message);
+			res.send({
+				"error": err.message
+			});
+		}else{
+			res.send({"success": true})
+		}
 	});
 
 })
