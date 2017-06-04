@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const cors = require('cors')
+const cors = require('cors');
 
 
 const app = express();
@@ -11,10 +11,10 @@ app.use(cors())
 app.use(bodyParser.json());
 
 var conn = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "TODO"
+	host: "localhost",
+	user: "root",
+	password: "root",
+	database: "TODO"
 });
 
 const selectTodos = "SELECT * FROM todo;";
@@ -92,3 +92,5 @@ app.put('/todos/:id', function get(req,res) {
 })
 
 app.listen(3000);
+
+module.exports = app;
