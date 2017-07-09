@@ -32,47 +32,44 @@
 
   <script>
 
-    var url = 'http://api.giphy.com/v1/gifs/search?q=gaming&api_key=dc6zaTOxFJmzC'; //A local page
+    const url = 'http://api.giphy.com/v1/gifs/search?q=gaming&api_key=dc6zaTOxFJmzC'; //A local page
 
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
     xhr.open('GET', url, true);
 
     xhr.send('');
 
-    var list;
-
-    var getDiv = document.querySelector('div');
-
     xhr.onreadystatechange = function(){
     if (xhr.readyState === XMLHttpRequest.DONE) {
-      console.log(JSON.parse(xhr.response));
-      list = JSON.parse(xhr.response);
-      createGif()
+      console.info(JSON.parse(xhr.response));
+      const list = JSON.parse(xhr.response);
+      createGif(list);
+      }
     }
-  }
 
-  var getGIFUrl1;
 
-   function createGif(){
-     for (var i = 0; i < 16; i++) {
-        var newImage = document.createElement('img');
-        var getGIFUrl = list.data[i].images.original_still.url;
-        newImage.setAttribute('src', getGIFUrl);
-        newImage.setAttribute('class', i.toString());
-        newImage.setAttribute('onclick', 'move(this)');
-        getDiv.appendChild(newImage);
+     function createGif(list){
+       for (let i = 0; i < 16; i++) {
+          
+          const newImage = document.createElement('img');
+          const getGIFUrl = list.data[i].images.original_still.url;
+          const getDiv = document.querySelector('div');
+          
+          newImage.setAttribute('src', getGIFUrl);
+          newImage.setAttribute('class', i.toString());
+          newImage.setAttribute('onclick', 'move(this)');
+          
+          getDiv.appendChild(newImage);
+      }
     }
-  }
 
-  var move = function(element){
-    var myClass = parseInt(element.getAttribute('class'));
-    getGIFUrl1 = list.data[myClass].images.original.url;
-    element.setAttribute('src', getGIFUrl1);
-  }
-
-  
-
+    const move = function(element){
+      const myClass = parseInt(element.getAttribute('class'));
+      const getGIFUrl1 = list.data[myClass].images.original.url;
+      
+      element.setAttribute('src', getGIFUrl1);
+    }
 
   </script>
 </body>
